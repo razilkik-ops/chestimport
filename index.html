@@ -1,0 +1,3972 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Import Drive Header</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+
+      :root {
+        --bg-top: #050b13;
+        --bg-bottom: #08111a;
+        --line-soft: rgba(255, 255, 255, 0.04);
+        --text: rgba(255, 255, 255, 0.94);
+        --muted: rgba(225, 232, 239, 0.72);
+        --accent: #d7342d;
+        --panel-bg: rgba(17, 26, 37, 0.92);
+        --panel-top: rgba(255, 255, 255, 0.03);
+        --panel-bottom: rgba(255, 255, 255, 0.012);
+        --panel-border: rgba(255, 255, 255, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        background: var(--bg-bottom);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+      }
+
+      body.is-modal-open {
+        overflow: hidden;
+      }
+
+      .header {
+        width: 100%;
+        height: 90px;
+        background: var(--bg-bottom);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.03),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+      }
+
+      .header__inner {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0 34px 0 22px;
+        display: flex;
+        align-items: center;
+        gap: 34px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 323px;
+        text-decoration: none;
+      }
+
+      .brand__mark {
+        width: 61px;
+        height: 50px;
+        flex: 0 0 auto;
+      }
+
+      .brand__copy {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        transform: translateY(-1px);
+      }
+
+      .brand__title {
+        color: #f6f8fa;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.45px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .brand__title span {
+        color: #e2362f;
+      }
+
+      .brand__subtitle {
+        color: rgba(196, 207, 218, 0.72);
+        font-size: 11px;
+        line-height: 1.08;
+        white-space: nowrap;
+      }
+
+      .nav {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 45px;
+        min-width: 0;
+      }
+
+      .nav__item {
+        position: relative;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: rgba(240, 244, 248, 0.72);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.18px;
+        white-space: nowrap;
+      }
+
+      .nav__item--active {
+        color: rgba(255, 255, 255, 0.96);
+      }
+
+      .nav__item--active::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -20px;
+        width: 67px;
+        height: 3px;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        background: linear-gradient(180deg, #ff5a4f 0%, #e2362f 45%, #bf281f 100%);
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        width: 299px;
+        height: 52px;
+        padding: 0 24px 0 32px;
+        border: 0;
+        border-radius: 7px;
+        color: #fff;
+        background: var(--accent);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 1px 0 rgba(0, 0, 0, 0.38),
+          0 6px 12px rgba(0, 0, 0, 0.14);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.18px;
+        white-space: nowrap;
+      }
+
+      .cta__arrow,
+      .hero__arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1612 / 613;
+        min-height: 360px;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+        background: #09121b;
+      }
+
+      .hero__media {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(4, 10, 18, 0.42) 0%, rgba(4, 10, 18, 0.16) 16%, rgba(4, 10, 18, 0.04) 36%, rgba(4, 10, 18, 0.02) 100%),
+          url("./assets/hero-scene-v3.png") center center / cover no-repeat;
+      }
+
+      .hero__shade {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(840px 320px at 15% 18%, rgba(3, 8, 15, 0.54), transparent 70%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+        pointer-events: none;
+      }
+
+      .hero__inner {
+        position: relative;
+        z-index: 1;
+        width: min(1240px, 100%);
+        height: 100%;
+        margin: 0 auto;
+        padding: clamp(52px, 6vw, 86px) clamp(18px, 3.8vw, 48px) 28px;
+      }
+
+      .hero__content {
+        max-width: 520px;
+      }
+
+      .hero__title {
+        margin: 0 0 26px;
+        color: #f6f8fa;
+        font-size: clamp(40px, 4.9vw, 62px);
+        font-weight: 700;
+        line-height: 0.98;
+        letter-spacing: -2.2px;
+        text-transform: uppercase;
+      }
+
+      .hero__desc {
+        max-width: 500px;
+        margin: 0 0 24px;
+        color: var(--muted);
+        font-size: clamp(13px, 1.3vw, 18px);
+        line-height: 1.45;
+      }
+
+      .hero__buttons {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 0;
+      }
+
+      .hero__primary,
+      .hero__secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 61px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.12px;
+        white-space: nowrap;
+      }
+
+      .hero__primary {
+        gap: 10px;
+        padding: 0 28px;
+        border: 0;
+        color: #fff;
+        background: var(--accent);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+      }
+
+      .hero__secondary {
+        padding: 0 31px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        color: rgba(244, 246, 248, 0.88);
+        background: rgba(7, 16, 26, 0.22);
+      }
+
+      .hero__bottom {
+        position: absolute;
+        left: clamp(18px, 3.8vw, 48px);
+        right: clamp(18px, 3.8vw, 48px);
+        bottom: 26px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .hero__stats {
+        display: flex;
+        align-items: center;
+        gap: clamp(18px, 2.2vw, 38px);
+      }
+
+      .hero__stat {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .hero__stat-icon {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        color: rgba(241, 245, 248, 0.74);
+      }
+
+      .hero__stat-value {
+        color: #f4f6f8;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .hero__stat-label {
+        margin-top: 4px;
+        color: rgba(220, 228, 235, 0.62);
+        font-size: 12px;
+        line-height: 1.16;
+      }
+
+      .hero__markets {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-right: 10px;
+      }
+
+      .hero__flags {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .hero__market-text {
+        color: rgba(232, 238, 242, 0.74);
+        font-size: 12px;
+        line-height: 1.42;
+      }
+
+      .flag {
+        width: 48px;
+        height: 34px;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+      }
+
+      .flag svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .advantages {
+        position: relative;
+        padding: clamp(64px, 7vw, 92px) 0 clamp(78px, 8vw, 118px);
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .advantages::before {
+        content: none;
+      }
+
+      .advantages__inner {
+        position: relative;
+        width: min(1440px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(18px, 3.6vw, 56px);
+      }
+
+      .advantages__header {
+        max-width: 560px;
+        margin-bottom: clamp(26px, 3vw, 34px);
+      }
+
+      .advantages__eyebrow {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: rgba(197, 207, 217, 0.58);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .advantages__title {
+        margin: 0 0 16px;
+        color: #f6f8fa;
+        font-size: clamp(30px, 3.3vw, 42px);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.8px;
+      }
+
+      .advantages__desc {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.55;
+        color: rgba(211, 221, 230, 0.72);
+      }
+
+      .advantages__cards {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .advantages__card {
+        min-height: 252px;
+        padding: 28px 18px 22px;
+        border: 1px solid var(--panel-border);
+        border-radius: 16px;
+        background:
+          linear-gradient(180deg, var(--panel-top) 0%, var(--panel-bottom) 100%),
+          var(--panel-bg);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.03),
+          0 16px 36px rgba(0, 0, 0, 0.16);
+        text-align: center;
+      }
+
+      .advantages__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 18px;
+        color: rgba(240, 243, 247, 0.76);
+      }
+
+      .advantages__icon svg {
+        width: 40px;
+        height: 40px;
+        display: block;
+      }
+
+      .advantages__icon img {
+        width: 40px;
+        height: 40px;
+        display: block;
+        object-fit: contain;
+      }
+
+      .advantages__card-title {
+        margin: 0 0 10px;
+        color: #f6f8fa;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.24px;
+      }
+
+      .advantages__card-text {
+        margin: 0;
+        color: rgba(203, 213, 222, 0.62);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .inventory {
+        position: relative;
+        padding: 6px 0 108px;
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .inventory::before {
+        content: none;
+      }
+
+      .inventory__inner {
+        position: relative;
+        width: min(1440px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(18px, 3.6vw, 56px);
+      }
+
+      .inventory__top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 20px;
+      }
+
+      .inventory__controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .inventory__eyebrow {
+        margin-bottom: 10px;
+        color: rgba(197, 207, 217, 0.56);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .inventory__title {
+        margin: 0;
+        color: #f2f5f8;
+        font-size: clamp(30px, 3.1vw, 42px);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.75px;
+      }
+
+      .inventory__catalog {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-width: 216px;
+        height: 50px;
+        padding: 0 22px;
+        margin-top: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        background: rgba(13, 22, 34, 0.34);
+        color: rgba(238, 242, 246, 0.9);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.12px;
+      }
+
+      .inventory__catalog svg {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+      }
+
+      .inventory__filters {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        background: rgba(13, 22, 34, 0.24);
+      }
+
+      .inventory__filter {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        height: 38px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 9px;
+        background: transparent;
+        color: rgba(222, 230, 237, 0.86);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        transition:
+          border-color 0.18s ease,
+          background 0.18s ease,
+          color 0.18s ease;
+      }
+
+      .inventory__filter[aria-pressed="true"] {
+        border-color: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #f5f8fb;
+      }
+
+      .inventory__filter-flag {
+        width: 28px;
+        height: 18px;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+        flex: 0 0 auto;
+      }
+
+      .inventory__filter-flag svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .inventory__viewport {
+        position: relative;
+      }
+
+      .inventory__arrow {
+        position: absolute;
+        top: 140px;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 50%;
+        background: rgba(28, 37, 50, 0.84);
+        color: rgba(247, 249, 251, 0.9);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.05),
+          0 10px 24px rgba(0, 0, 0, 0.22);
+        transform: translateY(-50%);
+      }
+
+      .inventory__arrow--prev {
+        left: -26px;
+      }
+
+      .inventory__arrow--next {
+        right: -26px;
+      }
+
+      .inventory__arrow svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+
+      .inventory__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .inventory__card {
+        padding: 14px 14px 16px;
+        border: 1px solid var(--panel-border);
+        border-radius: 16px;
+        background:
+          linear-gradient(180deg, var(--panel-top) 0%, var(--panel-bottom) 100%),
+          var(--panel-bg);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.03),
+          0 18px 42px rgba(0, 0, 0, 0.16);
+      }
+
+      .inventory__card[hidden] {
+        display: none;
+      }
+
+      .inventory__card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+
+      .inventory__status {
+        display: inline-flex;
+        align-items: center;
+        height: 24px;
+        padding: 0 10px;
+        border-radius: 7px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #f5f8fb;
+      }
+
+      .inventory__status--available {
+        background: linear-gradient(180deg, #5d8f49 0%, #4d793d 100%);
+      }
+
+      .inventory__status--transit {
+        background: linear-gradient(180deg, #486ea9 0%, #3f5f92 100%);
+      }
+
+      .inventory__country {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(226, 232, 239, 0.86);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: -0.08px;
+        text-transform: uppercase;
+      }
+
+      .inventory__flag {
+        width: 30px;
+        height: 20px;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+
+      .inventory__flag svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .inventory__media {
+        height: 146px;
+        margin-bottom: 16px;
+        overflow: hidden;
+        border-radius: 12px;
+        background:
+          radial-gradient(120% 90% at 50% 0%, rgba(255, 255, 255, 0.03), transparent 58%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+      }
+
+      .inventory__media img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .inventory__name {
+        margin: 0 0 8px;
+        color: #f3f6f9;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.26px;
+      }
+
+      .inventory__specs {
+        margin: 0 0 14px;
+        color: rgba(200, 210, 220, 0.66);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.45;
+      }
+
+      .inventory__price {
+        margin: 0;
+        color: #f5f8fa;
+        font-size: 17px;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.22px;
+      }
+
+      .inventory__price-rub {
+        margin-top: 3px;
+        color: rgba(214, 222, 230, 0.68);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .inventory__actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .inventory__more {
+        height: 38px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(21, 30, 41, 0.38);
+        color: rgba(245, 248, 250, 0.92);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.12px;
+      }
+
+      .inventory__fav {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(21, 30, 41, 0.22);
+        color: rgba(240, 244, 247, 0.78);
+      }
+
+      .inventory__fav svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+
+      .reviews {
+        position: relative;
+        padding: 10px 0 104px;
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .reviews::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(900px 320px at 16% 0%, rgba(18, 39, 61, 0.22), transparent 72%),
+          radial-gradient(720px 260px at 85% 12%, rgba(10, 29, 48, 0.16), transparent 74%);
+        pointer-events: none;
+      }
+
+      .reviews__inner {
+        position: relative;
+        z-index: 1;
+        width: min(1440px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(18px, 3.6vw, 56px);
+      }
+
+      .reviews__eyebrow {
+        margin-bottom: 10px;
+        color: rgba(197, 207, 217, 0.56);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .reviews__title {
+        margin: 0 0 30px;
+        color: #f2f5f8;
+        font-size: clamp(30px, 2.85vw, 36px);
+        font-weight: 600;
+        line-height: 1.08;
+        letter-spacing: -0.06em;
+      }
+
+      .reviews__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .reviews__card {
+        min-height: 242px;
+        padding: 22px 30px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(8, 25, 38, 0.96), rgba(5, 18, 29, 0.94)),
+          rgba(9, 23, 35, 0.92);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.035),
+          0 18px 42px rgba(0, 0, 0, 0.16);
+      }
+
+      .reviews__head {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .reviews__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 88px;
+        height: 88px;
+        flex: 0 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 50%;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02) 72%),
+          rgba(23, 33, 45, 0.9);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.05),
+          0 10px 24px rgba(0, 0, 0, 0.18);
+      }
+
+      .reviews__avatar svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .reviews__person {
+        min-width: 0;
+      }
+
+      .reviews__name {
+        margin: 0 0 10px;
+        color: #f3f6f9;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.04em;
+      }
+
+      .reviews__meta {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .reviews__stars {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: #ffc72c;
+      }
+
+      .reviews__stars svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+        filter: drop-shadow(0 3px 6px rgba(255, 199, 44, 0.18));
+      }
+
+      .reviews__date {
+        color: rgba(205, 214, 223, 0.74);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .reviews__text {
+        margin: 0;
+        color: rgba(228, 234, 240, 0.82);
+        font-size: 18px;
+        line-height: 1.55;
+        letter-spacing: -0.02em;
+      }
+
+      .application {
+        padding: 0 0 18px;
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .application__inner {
+        width: min(1440px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(18px, 3.6vw, 56px);
+      }
+
+      .application__panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 24px;
+        background:
+          linear-gradient(180deg, rgba(7, 20, 33, 0.96), rgba(4, 16, 27, 0.96)),
+          rgba(7, 20, 33, 0.96);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.04),
+          0 18px 48px rgba(0, 0, 0, 0.18);
+      }
+
+      .application__panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(3, 11, 19, 0.88) 0%, rgba(3, 11, 19, 0.48) 36%, rgba(3, 11, 19, 0.38) 100%),
+          radial-gradient(620px 240px at 24% 100%, rgba(12, 51, 78, 0.28), transparent 70%),
+          url("./assets/hero-scene-v3.png") center center / cover no-repeat;
+        opacity: 0.62;
+      }
+
+      .application__panel::after {
+        content: "";
+        position: absolute;
+        inset: auto 34% 26px 22%;
+        height: 180px;
+        background:
+          radial-gradient(closest-side, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 72%);
+        filter: blur(24px);
+        pointer-events: none;
+      }
+
+      .application__grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(480px, 0.9fr);
+        gap: 28px;
+        padding: 30px 36px 24px;
+      }
+
+      .application__copy {
+        max-width: 560px;
+        padding-top: 4px;
+      }
+
+      .application__title {
+        margin: 0 0 16px;
+        color: #f6f9fb;
+        font-size: clamp(38px, 4vw, 52px);
+        font-weight: 700;
+        line-height: 1.02;
+        letter-spacing: -0.06em;
+      }
+
+      .application__text {
+        margin: 0;
+        color: rgba(221, 228, 234, 0.74);
+        font-size: 18px;
+        line-height: 1.55;
+      }
+
+      .application__form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        align-content: start;
+      }
+
+      .application__field {
+        display: block;
+      }
+
+      .application__field--wide {
+        grid-column: 1 / 2;
+      }
+
+      .application__field--submit {
+        grid-column: 2 / 3;
+      }
+
+      .application__control {
+        width: 100%;
+        height: 74px;
+        padding: 0 28px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 12px;
+        background: rgba(3, 14, 25, 0.9);
+        color: #f5f8fb;
+        font: 600 18px/1.3 "Manrope", Arial, Helvetica, sans-serif;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        transition:
+          border-color 0.18s ease,
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .application__control::placeholder {
+        color: rgba(218, 226, 233, 0.54);
+      }
+
+      .application__control:focus {
+        outline: none;
+        border-color: rgba(215, 52, 45, 0.7);
+        background: rgba(6, 16, 28, 0.98);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.04),
+          0 0 0 3px rgba(215, 52, 45, 0.12);
+      }
+
+      .application__submit {
+        width: 100%;
+        height: 74px;
+        border: 0;
+        border-radius: 12px;
+        background: linear-gradient(180deg, #ea2c24 0%, #cf231c 100%);
+        color: #fff;
+        font: 700 20px/1.1 "Manrope", Arial, Helvetica, sans-serif;
+        letter-spacing: -0.03em;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 18px 34px rgba(103, 16, 13, 0.28);
+      }
+
+      .application__bottom {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 0 36px 26px;
+      }
+
+      .application__benefits {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        flex-wrap: wrap;
+      }
+
+      .application__benefit {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: rgba(233, 238, 243, 0.84);
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .application__benefit-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 50%;
+        background: rgba(5, 14, 24, 0.66);
+        color: #ea2c24;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .application__benefit-icon svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+
+      .application__note {
+        color: rgba(213, 221, 228, 0.72);
+        font-size: 16px;
+        line-height: 1.45;
+        text-align: right;
+      }
+
+      .site-footer {
+        position: relative;
+        padding: 30px 0 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .site-footer::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(780px 260px at 16% 0%, rgba(12, 32, 50, 0.2), transparent 72%);
+        pointer-events: none;
+      }
+
+      .site-footer__inner {
+        position: relative;
+        z-index: 1;
+        width: min(1440px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(18px, 3.6vw, 56px);
+      }
+
+      .site-footer__grid {
+        display: grid;
+        grid-template-columns: minmax(260px, 1.2fr) minmax(180px, 0.9fr) minmax(280px, 1fr) minmax(220px, 0.9fr);
+        gap: 34px;
+        align-items: start;
+      }
+
+      .site-footer__brand {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .site-footer__logo {
+        margin: 0;
+        color: #f8fafc;
+        font-size: clamp(38px, 4vw, 58px);
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+      }
+
+      .site-footer__logo span {
+        color: #e42a23;
+      }
+
+      .site-footer__tagline {
+        margin: 0;
+        color: rgba(218, 226, 233, 0.74);
+        font-size: 18px;
+        line-height: 1.45;
+      }
+
+      .site-footer__title {
+        margin: 0 0 14px;
+        color: #f3f7fa;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .site-footer__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .site-footer__list li,
+      .site-footer__list a {
+        color: rgba(223, 230, 236, 0.82);
+        font-size: 17px;
+        line-height: 1.45;
+        text-decoration: none;
+      }
+
+      .site-footer__contacts {
+        display: grid;
+        gap: 12px;
+      }
+
+      .site-footer__contact {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: rgba(223, 230, 236, 0.82);
+        font-size: 17px;
+        line-height: 1.45;
+      }
+
+      .site-footer__contact svg {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+        margin-top: 2px;
+        color: rgba(232, 238, 243, 0.82);
+      }
+
+      .site-footer__socials {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .site-footer__social {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 50%;
+        background: rgba(11, 20, 31, 0.28);
+        color: #f3f7fa;
+        text-decoration: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .site-footer__social svg {
+        width: 26px;
+        height: 26px;
+        display: block;
+      }
+
+      .car-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 28px;
+        background: rgba(4, 9, 15, 0.74);
+        backdrop-filter: blur(14px);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease;
+      }
+
+      .car-modal.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .car-modal__panel {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(360px, 0.96fr) minmax(0, 1.04fr);
+        width: min(1080px, 100%);
+        max-height: min(760px, calc(100vh - 56px));
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 22px;
+        background:
+          radial-gradient(760px 420px at 12% 0%, rgba(29, 46, 66, 0.34), transparent 72%),
+          linear-gradient(180deg, rgba(10, 18, 28, 0.98), rgba(7, 14, 23, 0.98));
+        box-shadow:
+          0 34px 88px rgba(0, 0, 0, 0.46),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .car-modal__close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 3;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        background: rgba(12, 19, 30, 0.68);
+        color: rgba(244, 247, 250, 0.84);
+      }
+
+      .car-modal__close svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .car-modal__media {
+        position: relative;
+        min-height: 100%;
+        background:
+          radial-gradient(440px 240px at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%),
+          linear-gradient(180deg, rgba(18, 28, 41, 0.96), rgba(7, 14, 23, 0.92));
+      }
+
+      .car-modal__media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(420px 180px at 50% 100%, rgba(255, 255, 255, 0.05), transparent 72%),
+          linear-gradient(180deg, rgba(8, 15, 24, 0.08), rgba(8, 15, 24, 0.46));
+      }
+
+      .car-modal__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        filter: saturate(0.96) brightness(0.88);
+      }
+
+      .car-modal__body {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 40px 34px 34px;
+        overflow-y: auto;
+      }
+
+      .car-modal__meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .car-modal__status,
+      .car-modal__country {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .car-modal__status {
+        color: #f4f7fa;
+      }
+
+      .car-modal__status--available {
+        background: linear-gradient(180deg, #5d8f49 0%, #4d793d 100%);
+      }
+
+      .car-modal__status--transit {
+        background: linear-gradient(180deg, #486ea9 0%, #3f5f92 100%);
+      }
+
+      .car-modal__country {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(17, 26, 37, 0.46);
+        color: rgba(228, 234, 240, 0.82);
+      }
+
+      .car-modal__title {
+        margin: 0;
+        color: #f5f8fb;
+        font-size: clamp(30px, 3vw, 42px);
+        font-weight: 700;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+      }
+
+      .car-modal__lead {
+        margin: 0;
+        color: rgba(219, 226, 232, 0.74);
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .car-modal__specs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .car-modal__spec {
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .car-modal__spec-label {
+        display: block;
+        margin-bottom: 6px;
+        color: rgba(199, 208, 217, 0.58);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .car-modal__spec-value {
+        color: #f3f6f9;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      .car-modal__pricing {
+        display: grid;
+        gap: 4px;
+        padding: 16px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012)),
+          rgba(18, 27, 38, 0.72);
+      }
+
+      .car-modal__price {
+        color: #f7f9fb;
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+      }
+
+      .car-modal__price-rub {
+        color: rgba(216, 223, 230, 0.68);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .car-modal__highlights {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .car-modal__highlights li {
+        position: relative;
+        padding-left: 18px;
+        color: rgba(220, 227, 233, 0.74);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .car-modal__highlights li::before {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: 0;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #d7342d;
+        box-shadow: 0 0 0 4px rgba(215, 52, 45, 0.14);
+      }
+
+      .car-modal__actions {
+        margin-top: auto;
+        padding-top: 10px;
+      }
+
+      .car-modal__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 60px;
+        padding: 0 24px;
+        border-radius: 12px;
+        background: linear-gradient(180deg, #df443c 0%, #bf2e28 100%);
+        color: #fff;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.12),
+          0 18px 34px rgba(108, 20, 17, 0.28);
+      }
+
+      .process {
+        padding: 6px 0 110px;
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .process__inner {
+        width: min(1440px, 100%);
+        margin: 0 auto;
+        padding: 0 clamp(18px, 3.6vw, 56px);
+      }
+
+      .process__eyebrow {
+        margin-bottom: 10px;
+        color: rgba(197, 207, 217, 0.56);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .process__title {
+        margin: 0 0 34px;
+        color: #f2f5f8;
+        font-size: clamp(30px, 2.85vw, 36px);
+        font-weight: 500;
+        line-height: 1.08;
+        letter-spacing: -0.06em;
+      }
+
+      .process__steps {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0;
+      }
+
+      .process__step {
+        position: relative;
+        min-width: 0;
+        padding-right: clamp(18px, 1.8vw, 28px);
+      }
+
+      .process__step:last-child {
+        padding-right: 0;
+      }
+
+      .process__step-top {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        min-height: 104px;
+        margin-bottom: 26px;
+      }
+
+      .process__number {
+        display: flex;
+        position: relative;
+        z-index: 1;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        width: 92px;
+        height: 92px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.015) 100%),
+          var(--panel-bg);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.03),
+          0 14px 30px rgba(6, 10, 15, 0.12);
+        color: #f4f7f9;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      .process__icon {
+        display: flex;
+        position: relative;
+        z-index: 1;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        width: 104px;
+        height: 104px;
+        border: 2px solid rgba(255, 255, 255, 0.12);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.012) 40%, rgba(8, 13, 19, 0.02) 100%),
+          rgba(17, 26, 37, 0.36);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.04),
+          0 18px 32px rgba(5, 10, 16, 0.1);
+      }
+
+      .process__icon img {
+        width: 50px;
+        height: 50px;
+        display: block;
+        object-fit: contain;
+        opacity: 0.92;
+      }
+
+      .process__connector {
+        position: absolute;
+        z-index: 0;
+        top: 50%;
+        left: 214px;
+        right: -28px;
+        height: 28px;
+        background: center / 100% 16px no-repeat url("./assets/process-connector.png");
+        opacity: 0.8;
+        transform: translateY(-50%);
+      }
+
+      .process__step:last-child .process__connector {
+        display: none;
+      }
+
+      .process__name {
+        margin: 0 0 10px;
+        color: #f1f5f8;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.32;
+        letter-spacing: -0.22px;
+        max-width: 240px;
+      }
+
+      .process__desc {
+        margin: 0;
+        color: rgba(212, 221, 229, 0.72);
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.55;
+        max-width: 250px;
+      }
+
+      .order-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        background: rgba(0, 0, 0, 0.72);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease;
+      }
+
+      .order-modal.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .order-modal__panel {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.06fr) minmax(420px, 0.94fr);
+        width: min(1500px, 100%);
+        max-height: min(860px, calc(100vh - 56px));
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        background:
+          radial-gradient(800px 520px at 28% 18%, rgba(29, 47, 67, 0.3), transparent 70%),
+          linear-gradient(180deg, rgba(9, 17, 27, 0.98), rgba(7, 14, 22, 0.98));
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.46),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        font-family: "Manrope", Arial, Helvetica, sans-serif;
+      }
+
+      .order-modal__close {
+        position: absolute;
+        top: 32px;
+        right: 34px;
+        z-index: 3;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: rgba(243, 247, 250, 0.74);
+      }
+
+      .order-modal__close svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .order-modal__visual {
+        position: relative;
+        min-height: min(700px, calc(100vh - 56px));
+        padding: 54px clamp(40px, 5vw, 72px) 48px;
+        overflow: hidden;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .order-modal__visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(4, 10, 17, 0.22), rgba(4, 10, 17, 0.84)),
+          linear-gradient(180deg, rgba(4, 10, 17, 0.22), rgba(4, 10, 17, 0.86)),
+          url("./assets/mustang.png") 36% 68% / 125% auto no-repeat;
+        filter: saturate(0.92) brightness(0.8);
+        transform: scale(1.08);
+      }
+
+      .order-modal__visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(520px 340px at 15% 5%, rgba(44, 61, 81, 0.24), transparent 70%),
+          linear-gradient(180deg, rgba(6, 12, 20, 0.22), rgba(6, 12, 20, 0.78));
+      }
+
+      .order-modal__visual-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+      }
+
+      .order-modal__brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: clamp(46px, 7vh, 112px);
+      }
+
+      .order-modal__brand .brand__mark {
+        width: 74px;
+        height: 60px;
+      }
+
+      .order-modal__brand .brand__title {
+        font-size: 25px;
+      }
+
+      .order-modal__brand .brand__subtitle {
+        font-size: 12px;
+      }
+
+      .order-modal__title {
+        max-width: 630px;
+        margin: 0 0 24px;
+        color: #f7f9fb;
+        font-size: clamp(48px, 4.6vw, 78px);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+
+      .order-modal__text {
+        max-width: 610px;
+        margin: 0;
+        color: rgba(224, 230, 237, 0.7);
+        font-size: 21px;
+        line-height: 1.5;
+      }
+
+      .order-modal__proof {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+        margin-top: auto;
+        padding-top: clamp(44px, 7vh, 80px);
+      }
+
+      .order-modal__proof-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: rgba(232, 238, 244, 0.76);
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .order-modal__proof-icon {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        color: rgba(238, 243, 248, 0.72);
+      }
+
+      .order-modal__markets {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 32px;
+      }
+
+      .order-modal__markets-text {
+        color: rgba(232, 238, 242, 0.74);
+        font-size: 17px;
+        line-height: 1.35;
+      }
+
+      .order-modal__form-wrap {
+        position: relative;
+        overflow-y: auto;
+        padding: clamp(48px, 6vh, 94px) clamp(42px, 5vw, 72px) 42px;
+        background:
+          radial-gradient(640px 380px at 60% 0%, rgba(32, 50, 70, 0.3), transparent 72%),
+          rgba(7, 14, 23, 0.5);
+      }
+
+      .order-form {
+        display: grid;
+        gap: 22px;
+      }
+
+      .order-form__field {
+        display: grid;
+        gap: 12px;
+      }
+
+      .order-form__label {
+        color: rgba(235, 240, 244, 0.75);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
+      .order-form__control {
+        width: 100%;
+        min-height: 62px;
+        padding: 0 22px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 10px;
+        outline: none;
+        background: rgba(8, 16, 26, 0.55);
+        color: #f6f8fa;
+        font: 600 19px/1.3 "Manrope", Arial, Helvetica, sans-serif;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        transition:
+          border-color 0.18s ease,
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .order-form__control::placeholder {
+        color: rgba(221, 228, 235, 0.34);
+      }
+
+      .order-form__control:focus {
+        border-color: rgba(215, 52, 45, 0.72);
+        background: rgba(11, 20, 31, 0.72);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.04),
+          0 0 0 3px rgba(215, 52, 45, 0.12);
+      }
+
+      .order-form__select {
+        appearance: none;
+        padding-right: 58px;
+        background:
+          linear-gradient(45deg, transparent 50%, rgba(235, 240, 244, 0.7) 50%) calc(100% - 29px) 50% / 8px 8px no-repeat,
+          linear-gradient(135deg, rgba(235, 240, 244, 0.7) 50%, transparent 50%) calc(100% - 22px) 50% / 8px 8px no-repeat,
+          rgba(8, 16, 26, 0.55);
+      }
+
+      .order-form__textarea-wrap {
+        position: relative;
+      }
+
+      .order-form__textarea {
+        display: block;
+        min-height: 136px;
+        padding-top: 22px;
+        padding-bottom: 42px;
+        resize: none;
+      }
+
+      .order-form__counter {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        color: rgba(220, 228, 235, 0.45);
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .order-form__submit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        width: 100%;
+        height: 70px;
+        margin-top: 10px;
+        border: 0;
+        border-radius: 10px;
+        background: linear-gradient(180deg, #df443c 0%, #bf2e28 100%);
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.12),
+          0 18px 34px rgba(108, 20, 17, 0.28);
+      }
+
+      .order-form__submit svg {
+        width: 34px;
+        height: 34px;
+      }
+
+      .order-form__note {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin: 0;
+        color: rgba(216, 224, 232, 0.54);
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.45;
+      }
+
+      .order-form__note svg {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        margin-top: 2px;
+      }
+
+      @media (min-width: 901px) and (max-height: 800px) {
+        .order-modal {
+          padding: 28px;
+        }
+
+        .order-modal__panel {
+          max-height: calc(100vh - 56px);
+        }
+
+        .order-modal__visual {
+          min-height: calc(100vh - 56px);
+          padding-top: 36px;
+          padding-bottom: 30px;
+        }
+
+        .order-modal__brand {
+          margin-bottom: 38px;
+          transform: scale(0.82);
+          transform-origin: left top;
+        }
+
+        .order-modal__title {
+          max-width: 540px;
+          font-size: 50px;
+        }
+
+        .order-modal__text {
+          max-width: 520px;
+          font-size: 17px;
+        }
+
+        .order-modal__proof {
+          gap: 18px;
+          padding-top: 42px;
+        }
+
+        .order-modal__proof-item {
+          gap: 10px;
+          font-size: 14px;
+        }
+
+        .order-modal__proof-icon {
+          width: 34px;
+          height: 34px;
+        }
+
+        .order-modal__markets {
+          margin-top: 24px;
+        }
+
+        .order-modal__markets-text {
+          font-size: 14px;
+        }
+
+        .order-modal__form-wrap {
+          padding-top: 42px;
+          padding-bottom: 26px;
+        }
+
+        .order-form {
+          gap: 16px;
+        }
+
+        .order-form__field {
+          gap: 8px;
+        }
+
+        .order-form__label {
+          font-size: 17px;
+        }
+
+        .order-form__control {
+          min-height: 54px;
+          font-size: 16px;
+        }
+
+        .order-form__textarea {
+          min-height: 104px;
+          padding-top: 16px;
+          padding-bottom: 34px;
+        }
+
+        .order-form__submit {
+          height: 58px;
+          margin-top: 2px;
+          font-size: 20px;
+        }
+
+        .order-form__note {
+          font-size: 12px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .header {
+          height: auto;
+        }
+
+        .header__inner {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 14px 18px;
+          padding: 12px 18px;
+        }
+
+        .brand {
+          min-width: 0;
+        }
+
+        .nav {
+          order: 3;
+          width: 100%;
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+
+        .hero {
+          aspect-ratio: auto;
+          min-height: 720px;
+        }
+
+        .hero__inner {
+          padding-top: 30px;
+          padding-bottom: 24px;
+        }
+
+        .hero__content {
+          max-width: 100%;
+        }
+
+        .hero__buttons,
+        .hero__bottom,
+        .hero__stats {
+          flex-wrap: wrap;
+        }
+
+        .hero__buttons {
+          gap: 12px;
+        }
+
+        .hero__primary,
+        .hero__secondary {
+          width: 100%;
+          height: 52px;
+        }
+
+        .hero__bottom {
+          position: static;
+          align-items: flex-start;
+        }
+
+        .hero__markets {
+          padding-right: 0;
+        }
+
+        .advantages__cards {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .inventory__top {
+          flex-wrap: wrap;
+        }
+
+        .inventory__controls {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .inventory__catalog {
+          min-width: 0;
+        }
+
+        .inventory__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .inventory__arrow {
+          display: none;
+        }
+
+        .reviews__grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .application__grid,
+        .site-footer__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .application__grid {
+          gap: 20px;
+        }
+
+        .application__panel::after {
+          inset: auto 18% 14px 18%;
+        }
+
+        .application__bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .application__note {
+          text-align: left;
+        }
+
+        .car-modal {
+          padding: 18px;
+          align-items: start;
+          overflow-y: auto;
+        }
+
+        .car-modal__panel {
+          grid-template-columns: 1fr;
+          max-height: none;
+        }
+
+        .car-modal__media {
+          min-height: 360px;
+        }
+
+        .process__steps {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 34px 20px;
+        }
+
+        .process__step {
+          padding-right: 0;
+        }
+
+        .process__connector {
+          display: none;
+        }
+
+        .order-modal {
+          padding: 18px;
+          align-items: start;
+          overflow-y: auto;
+        }
+
+        .order-modal__panel {
+          grid-template-columns: 1fr;
+          max-height: none;
+        }
+
+        .order-modal__visual {
+          min-height: 520px;
+          border-right: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .order-modal__form-wrap {
+          padding: 42px 30px 36px;
+        }
+
+        .order-modal__close {
+          top: 18px;
+          right: 18px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .advantages {
+          padding-top: 58px;
+          padding-bottom: 74px;
+        }
+
+        .advantages__card {
+          min-height: 0;
+          padding: 24px 16px 20px;
+          border-radius: 16px;
+        }
+
+        .advantages__header {
+          margin-bottom: 22px;
+        }
+
+        .advantages__title {
+          font-size: 28px;
+          line-height: 1.1;
+        }
+
+        .advantages__desc,
+        .advantages__card-text {
+          font-size: 14px;
+        }
+
+        .advantages__cards {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+
+        .advantages__icon {
+          width: 52px;
+          height: 52px;
+          margin-bottom: 16px;
+        }
+
+        .advantages__icon svg {
+          width: 36px;
+          height: 36px;
+        }
+
+        .advantages__card-title {
+          font-size: 17px;
+        }
+
+        .inventory {
+          padding-bottom: 76px;
+        }
+
+        .inventory__top {
+          margin-bottom: 18px;
+        }
+
+        .inventory__title {
+          font-size: 28px;
+          line-height: 1.1;
+        }
+
+        .inventory__controls,
+        .inventory__filters {
+          width: 100%;
+        }
+
+        .inventory__controls {
+          gap: 10px;
+        }
+
+        .inventory__filters {
+          justify-content: space-between;
+        }
+
+        .inventory__filter {
+          flex: 1 1 0;
+          justify-content: center;
+        }
+
+        .inventory__catalog {
+          width: 100%;
+        }
+
+        .inventory__grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+
+        .inventory__card {
+          padding: 14px;
+        }
+
+        .inventory__media {
+          height: 154px;
+        }
+
+        .reviews {
+          padding-bottom: 76px;
+        }
+
+        .reviews__title {
+          margin-bottom: 22px;
+          font-size: 28px;
+          line-height: 1.1;
+        }
+
+        .reviews__card {
+          min-height: 0;
+          padding: 18px 18px 20px;
+          border-radius: 18px;
+        }
+
+        .reviews__head {
+          gap: 14px;
+          margin-bottom: 16px;
+        }
+
+        .reviews__avatar {
+          width: 74px;
+          height: 74px;
+        }
+
+        .reviews__name {
+          font-size: 18px;
+        }
+
+        .reviews__meta {
+          gap: 12px;
+        }
+
+        .reviews__stars {
+          gap: 5px;
+        }
+
+        .reviews__stars svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .reviews__date {
+          font-size: 14px;
+        }
+
+        .reviews__text {
+          font-size: 16px;
+        }
+
+        .application {
+          padding-bottom: 10px;
+        }
+
+        .application__panel {
+          border-radius: 18px;
+        }
+
+        .application__grid {
+          padding: 22px 18px 16px;
+        }
+
+        .application__title {
+          font-size: 30px;
+        }
+
+        .application__text {
+          font-size: 16px;
+        }
+
+        .application__form {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .application__field--wide,
+        .application__field--submit {
+          grid-column: auto;
+        }
+
+        .application__control,
+        .application__submit {
+          height: 62px;
+          font-size: 16px;
+        }
+
+        .application__bottom {
+          gap: 16px;
+          padding: 0 18px 20px;
+        }
+
+        .application__benefits {
+          gap: 14px;
+        }
+
+        .application__benefit {
+          font-size: 15px;
+        }
+
+        .application__note {
+          font-size: 14px;
+        }
+
+        .site-footer {
+          padding: 24px 0 30px;
+        }
+
+        .site-footer__logo {
+          font-size: 32px;
+        }
+
+        .site-footer__tagline,
+        .site-footer__list li,
+        .site-footer__list a,
+        .site-footer__contact {
+          font-size: 15px;
+        }
+
+        .site-footer__social {
+          width: 52px;
+          height: 52px;
+        }
+
+        .car-modal {
+          padding: 0;
+        }
+
+        .car-modal__panel {
+          width: 100%;
+          min-height: 100vh;
+          border-radius: 0;
+        }
+
+        .car-modal__media {
+          min-height: 270px;
+        }
+
+        .car-modal__body {
+          padding: 24px 18px 22px;
+        }
+
+        .car-modal__title {
+          font-size: 28px;
+        }
+
+        .car-modal__lead {
+          font-size: 15px;
+        }
+
+        .car-modal__specs {
+          grid-template-columns: 1fr;
+        }
+
+        .car-modal__price {
+          font-size: 26px;
+        }
+
+        .car-modal__price-rub {
+          font-size: 16px;
+        }
+
+        .process {
+          padding-bottom: 76px;
+        }
+
+        .process__title {
+          margin-bottom: 22px;
+          font-size: 28px;
+          line-height: 1.1;
+        }
+
+        .process__steps {
+          grid-template-columns: 1fr;
+          gap: 26px;
+        }
+
+        .process__step {
+          padding-right: 0;
+        }
+
+        .process__step-top {
+          gap: 14px;
+          margin-bottom: 18px;
+          min-height: 78px;
+        }
+
+        .process__number {
+          width: 68px;
+          height: 68px;
+          font-size: 22px;
+          border-radius: 14px;
+        }
+
+        .process__icon {
+          width: 78px;
+          height: 78px;
+        }
+
+        .process__icon img {
+          width: 46px;
+          height: 46px;
+        }
+
+        .order-modal {
+          padding: 0;
+        }
+
+        .order-modal__panel {
+          width: 100%;
+          min-height: 100vh;
+          border-radius: 0;
+        }
+
+        .order-modal__visual {
+          min-height: 430px;
+          padding: 28px 20px 30px;
+        }
+
+        .order-modal__visual::before {
+          background:
+            linear-gradient(90deg, rgba(4, 10, 17, 0.28), rgba(4, 10, 17, 0.82)),
+            linear-gradient(180deg, rgba(4, 10, 17, 0.16), rgba(4, 10, 17, 0.9)),
+            url("./assets/mustang.png") 50% 88% / 160% auto no-repeat;
+        }
+
+        .order-modal__brand {
+          margin-bottom: 54px;
+          transform: scale(0.82);
+          transform-origin: left top;
+        }
+
+        .order-modal__title {
+          font-size: 42px;
+        }
+
+        .order-modal__text {
+          font-size: 16px;
+        }
+
+        .order-modal__proof {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          padding-top: 42px;
+        }
+
+        .order-modal__proof-item,
+        .order-modal__markets-text {
+          font-size: 14px;
+        }
+
+        .order-modal__markets {
+          margin-top: 24px;
+        }
+
+        .order-modal__form-wrap {
+          padding: 32px 18px 30px;
+        }
+
+        .order-form {
+          gap: 20px;
+        }
+
+        .order-form__label {
+          font-size: 16px;
+        }
+
+        .order-form__control {
+          min-height: 58px;
+          font-size: 16px;
+        }
+
+        .order-form__textarea {
+          min-height: 132px;
+        }
+
+        .order-form__submit {
+          height: 64px;
+          font-size: 19px;
+        }
+
+        .order-form__submit svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <a class="brand" href="#" aria-label="Import Drive">
+          <svg class="brand__mark" viewBox="0 0 61 50" fill="none" aria-hidden="true">
+            <path d="M3 46L15.5 4H31L18.5 46H3Z" fill="#F6F8FA"/>
+            <path d="M19.3 46L31.8 4H45.8L33.3 46H19.3Z" fill="#F6F8FA"/>
+            <path d="M32.7 46L45.2 4H58L42.3 25.2L55.2 46H32.7Z" fill="#E2362F"/>
+            <path d="M7 39.5L15.6 10.4H21L12.3 39.5H7Z" fill="#08111A"/>
+            <path d="M17.4 39.5L26.1 10.4H31.5L22.8 39.5H17.4Z" fill="#08111A"/>
+          </svg>
+          <span class="brand__copy">
+            <span class="brand__title">IMPORT <span>DRIVE</span></span>
+            <span class="brand__subtitle">Автомобили из США и Японии</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Главная навигация">
+          <button class="nav__item nav__item--active" type="button">Главная</button>
+          <button class="nav__item" type="button">Каталог</button>
+          <button class="nav__item" type="button">Услуги</button>
+          <button class="nav__item" type="button">О компании</button>
+          <button class="nav__item" type="button">Отзывы</button>
+          <button class="nav__item" type="button">Контакты</button>
+        </nav>
+
+        <button class="cta" type="button" data-order-modal-open>
+          <span>Получить консультацию</span>
+          <span class="cta__arrow" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2.75 7H10.25" stroke="white" stroke-opacity="0.94" stroke-width="1.6" stroke-linecap="round" />
+              <path d="M7.5 3.75L10.75 7L7.5 10.25" stroke="white" stroke-opacity="0.94" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Автомобили из США и Японии под ключ">
+      <div class="hero__media" aria-hidden="true"></div>
+      <div class="hero__shade" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title">АВТОМОБИЛИ<br />ИЗ США И ЯПОНИИ<br />ПОД КЛЮЧ</h1>
+
+          <p class="hero__desc">
+            Подберём, проверим, доставим и растаможим
+            автомобиль вашей мечты без лишних хлопот.
+          </p>
+
+          <div class="hero__buttons">
+            <button class="hero__primary" type="button" data-order-modal-open>
+              <span>Подобрать автомобиль</span>
+              <span class="hero__arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2.75 7H10.25" stroke="white" stroke-opacity="0.94" stroke-width="1.6" stroke-linecap="round" />
+                  <path d="M7.5 3.75L10.75 7L7.5 10.25" stroke="white" stroke-opacity="0.94" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </button>
+            <button class="hero__secondary" type="button">Смотреть каталог</button>
+          </div>
+
+          <div class="hero__bottom">
+            <div class="hero__stats">
+              <div class="hero__stat">
+                <svg class="hero__stat-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3L18.5 5.5V11.3C18.5 15.5 15.8 19.3 12 20.8C8.2 19.3 5.5 15.5 5.5 11.3V5.5L12 3Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M9.5 11.8L11.2 13.5L14.8 9.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                  <div class="hero__stat-value">5+ лет</div>
+                  <div class="hero__stat-label">опыта</div>
+                </div>
+              </div>
+
+              <div class="hero__stat">
+                <svg class="hero__stat-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3.5" y="6" width="17" height="11.5" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M7 17.5L6 20H18L17 17.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M8 9.7H16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M8 12.7H13.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <div>
+                  <div class="hero__stat-value">1000+</div>
+                  <div class="hero__stat-label">авто доставлено</div>
+                </div>
+              </div>
+
+              <div class="hero__stat">
+                <svg class="hero__stat-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 4L14.5 9L20 9.8L16 13.7L17 19.2L12 16.5L7 19.2L8 13.7L4 9.8L9.5 9L12 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                  <div class="hero__stat-value">98%</div>
+                  <div class="hero__stat-label">довольных клиентов</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero__markets">
+              <div class="hero__flags" aria-hidden="true">
+                <span class="flag">
+                  <svg viewBox="0 0 28 20">
+                    <rect width="28" height="20" fill="#fff"/>
+                    <rect width="28" height="1.54" y="1.54" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="4.62" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="7.69" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="10.77" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="13.85" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="16.92" fill="#c8342d"/>
+                    <rect width="12.5" height="10.8" fill="#244a94"/>
+                  </svg>
+                </span>
+                <span class="flag">
+                  <svg viewBox="0 0 28 20">
+                    <rect width="28" height="20" fill="#fff"/>
+                    <circle cx="14" cy="10" r="5.3" fill="#c62b32"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="hero__market-text">
+                Работаем с аукционами<br />США и Японии ежедневно
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="advantages" aria-labelledby="advantages-title">
+      <div class="advantages__inner">
+        <div class="advantages__header">
+          <div class="advantages__eyebrow">Наши преимущества</div>
+          <h2 class="advantages__title" id="advantages-title">
+            Полный цикл услуг<br />по импорту автомобилей
+          </h2>
+        </div>
+
+        <div class="advantages__cards">
+            <article class="advantages__card">
+              <div class="advantages__icon" aria-hidden="true">
+                <img src="./assets/adv-icon-document.png" alt="" />
+              </div>
+              <h3 class="advantages__card-title">Прозрачные условия</h3>
+              <p class="advantages__card-text">
+                Фиксируем стоимость договора, без скрытых платежей.
+              </p>
+            </article>
+
+            <article class="advantages__card">
+              <div class="advantages__icon" aria-hidden="true">
+                <img src="./assets/adv-icon-car.png" alt="" />
+              </div>
+              <h3 class="advantages__card-title">Реальные авто</h3>
+              <p class="advantages__card-text">
+                Подбираем только лучшие варианты с проверенной историей.
+              </p>
+            </article>
+
+            <article class="advantages__card">
+              <div class="advantages__icon" aria-hidden="true">
+                <img src="./assets/adv-icon-report.png" alt="" />
+              </div>
+              <h3 class="advantages__card-title">Фиксируем всё</h3>
+              <p class="advantages__card-text">
+                Предоставляем полный отчёт и фото/видео на каждом этапе.
+              </p>
+            </article>
+
+            <article class="advantages__card">
+              <div class="advantages__icon" aria-hidden="true">
+                <img src="./assets/adv-icon-wallet.png" alt="" />
+              </div>
+              <h3 class="advantages__card-title">Подберём по бюджету</h3>
+              <p class="advantages__card-text">
+                Найдём оптимальный вариант под ваши пожелания.
+              </p>
+            </article>
+
+            <article class="advantages__card">
+              <div class="advantages__icon" aria-hidden="true">
+                <img src="./assets/adv-icon-gavel.png" alt="" />
+              </div>
+              <h3 class="advantages__card-title">Аукционы США и Японии</h3>
+              <p class="advantages__card-text">
+                Доступ к закрытым торгам Copart, IAAI, USS, TAA и другим.
+              </p>
+            </article>
+
+            <article class="advantages__card">
+              <div class="advantages__icon" aria-hidden="true">
+                <img src="./assets/adv-icon-shield.png" alt="" />
+              </div>
+              <h3 class="advantages__card-title">Гарантия прозрачности</h3>
+              <p class="advantages__card-text">
+                Сопровождаем сделку и полностью поддерживаем до выдачи авто.
+              </p>
+            </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inventory" aria-labelledby="inventory-title">
+      <div class="inventory__inner">
+        <div class="inventory__top">
+          <div>
+            <div class="inventory__eyebrow">Подборка авто в наличии и в пути</div>
+            <h2 class="inventory__title" id="inventory-title">
+              Актуальные предложения
+            </h2>
+          </div>
+
+          <div class="inventory__controls">
+            <div class="inventory__filters" aria-label="Фильтр по стране">
+              <button class="inventory__filter" type="button" data-country-filter="usa" aria-pressed="true">
+                <span class="inventory__filter-flag" aria-hidden="true">
+                  <svg viewBox="0 0 28 20">
+                    <rect width="28" height="20" fill="#fff"/>
+                    <rect width="28" height="1.54" y="1.54" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="4.62" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="7.69" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="10.77" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="13.85" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="16.92" fill="#c8342d"/>
+                    <rect width="12.5" height="10.8" fill="#244a94"/>
+                  </svg>
+                </span>
+                <span>США</span>
+              </button>
+
+              <button class="inventory__filter" type="button" data-country-filter="japan" aria-pressed="true">
+                <span class="inventory__filter-flag" aria-hidden="true">
+                  <svg viewBox="0 0 28 20">
+                    <rect width="28" height="20" fill="#fff"/>
+                    <circle cx="14" cy="10" r="5.3" fill="#c62b32"/>
+                  </svg>
+                </span>
+                <span>Япония</span>
+              </button>
+            </div>
+
+            <button class="inventory__catalog" type="button">
+              <span>Перейти в каталог</span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8H11.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M8.8 4.8L12 8L8.8 11.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="inventory__viewport">
+          <button class="inventory__arrow inventory__arrow--prev" type="button" aria-label="Предыдущие предложения">
+            <svg viewBox="0 0 18 18" fill="none">
+              <path d="M11.5 3.8L6.4 9L11.5 14.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="inventory__grid">
+            <article class="inventory__card" data-country="usa" data-car-id="mustang">
+              <div class="inventory__card-top">
+                <span class="inventory__status inventory__status--available">В наличии</span>
+                <span class="inventory__country">
+                  <span>США</span>
+                  <span class="inventory__flag" aria-hidden="true">
+                    <svg viewBox="0 0 28 20">
+                      <rect width="28" height="20" fill="#fff"/>
+                      <rect width="28" height="1.54" y="1.54" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="4.62" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="7.69" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="10.77" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="13.85" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="16.92" fill="#c8342d"/>
+                      <rect width="12.5" height="10.8" fill="#244a94"/>
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div class="inventory__media">
+                <img src="./assets/mustang.png" alt="Ford Mustang GT 5.0" />
+              </div>
+              <h3 class="inventory__name">Ford Mustang GT 5.0</h3>
+              <p class="inventory__specs">2021 • 27 000 км • 5.0 л • Бензин • АКПП • RWD</p>
+              <p class="inventory__price">$32 900</p>
+              <div class="inventory__price-rub">≈ 3 050 000 ₽</div>
+              <div class="inventory__actions">
+                <button class="inventory__more" type="button" data-car-modal-open data-car-id="mustang" aria-haspopup="dialog">Подробнее</button>
+                <button class="inventory__fav" type="button" aria-label="Добавить в избранное">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M10 16.5L4.6 11.4C3.3 10.1 3.3 7.9 4.6 6.6C5.8 5.4 7.8 5.4 9 6.6L10 7.6L11 6.6C12.2 5.4 14.2 5.4 15.4 6.6C16.7 7.9 16.7 10.1 15.4 11.4L10 16.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <article class="inventory__card" data-country="japan" data-car-id="supra">
+              <div class="inventory__card-top">
+                <span class="inventory__status inventory__status--transit">В пути</span>
+                <span class="inventory__country">
+                  <span>Япония</span>
+                  <span class="inventory__flag" aria-hidden="true">
+                    <svg viewBox="0 0 28 20">
+                      <rect width="28" height="20" fill="#fff"/>
+                      <circle cx="14" cy="10" r="5.3" fill="#c62b32"/>
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div class="inventory__media">
+                <img src="./assets/supra.png" alt="Toyota Supra RZ 3.0" />
+              </div>
+              <h3 class="inventory__name">Toyota Supra RZ 3.0</h3>
+              <p class="inventory__specs">2022 • 18 000 км • 3.0 л • Бензин • АКПП • RWD</p>
+              <p class="inventory__price">$48 500</p>
+              <div class="inventory__price-rub">≈ 4 450 000 ₽</div>
+              <div class="inventory__actions">
+                <button class="inventory__more" type="button" data-car-modal-open data-car-id="supra" aria-haspopup="dialog">Подробнее</button>
+                <button class="inventory__fav" type="button" aria-label="Добавить в избранное">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M10 16.5L4.6 11.4C3.3 10.1 3.3 7.9 4.6 6.6C5.8 5.4 7.8 5.4 9 6.6L10 7.6L11 6.6C12.2 5.4 14.2 5.4 15.4 6.6C16.7 7.9 16.7 10.1 15.4 11.4L10 16.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <article class="inventory__card" data-country="usa" data-car-id="tesla">
+              <div class="inventory__card-top">
+                <span class="inventory__status inventory__status--transit">В пути</span>
+                <span class="inventory__country">
+                  <span>США</span>
+                  <span class="inventory__flag" aria-hidden="true">
+                    <svg viewBox="0 0 28 20">
+                      <rect width="28" height="20" fill="#fff"/>
+                      <rect width="28" height="1.54" y="1.54" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="4.62" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="7.69" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="10.77" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="13.85" fill="#c8342d"/>
+                      <rect width="28" height="1.54" y="16.92" fill="#c8342d"/>
+                      <rect width="12.5" height="10.8" fill="#244a94"/>
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div class="inventory__media">
+                <img src="./assets/tesla.png" alt="Tesla Model 3 Performance" />
+              </div>
+              <h3 class="inventory__name">Tesla Model 3 Performance</h3>
+              <p class="inventory__specs">2022 • 15 000 км • Электро • АКПП • AWD</p>
+              <p class="inventory__price">$36 900</p>
+              <div class="inventory__price-rub">≈ 3 410 000 ₽</div>
+              <div class="inventory__actions">
+                <button class="inventory__more" type="button" data-car-modal-open data-car-id="tesla" aria-haspopup="dialog">Подробнее</button>
+                <button class="inventory__fav" type="button" aria-label="Добавить в избранное">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M10 16.5L4.6 11.4C3.3 10.1 3.3 7.9 4.6 6.6C5.8 5.4 7.8 5.4 9 6.6L10 7.6L11 6.6C12.2 5.4 14.2 5.4 15.4 6.6C16.7 7.9 16.7 10.1 15.4 11.4L10 16.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+            <article class="inventory__card" data-country="japan" data-car-id="lexus">
+              <div class="inventory__card-top">
+                <span class="inventory__status inventory__status--available">В наличии</span>
+                <span class="inventory__country">
+                  <span>Япония</span>
+                  <span class="inventory__flag" aria-hidden="true">
+                    <svg viewBox="0 0 28 20">
+                      <rect width="28" height="20" fill="#fff"/>
+                      <circle cx="14" cy="10" r="5.3" fill="#c62b32"/>
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div class="inventory__media">
+                <img src="./assets/lexus.png" alt="Lexus NX 350 F Sport" />
+              </div>
+              <h3 class="inventory__name">Lexus NX 350 F Sport</h3>
+              <p class="inventory__specs">2022 • 24 000 км • 2.4 л • Бензин • АКПП • AWD</p>
+              <p class="inventory__price">$42 800</p>
+              <div class="inventory__price-rub">≈ 3 980 000 ₽</div>
+              <div class="inventory__actions">
+                <button class="inventory__more" type="button" data-car-modal-open data-car-id="lexus" aria-haspopup="dialog">Подробнее</button>
+                <button class="inventory__fav" type="button" aria-label="Добавить в избранное">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M10 16.5L4.6 11.4C3.3 10.1 3.3 7.9 4.6 6.6C5.8 5.4 7.8 5.4 9 6.6L10 7.6L11 6.6C12.2 5.4 14.2 5.4 15.4 6.6C16.7 7.9 16.7 10.1 15.4 11.4L10 16.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <button class="inventory__arrow inventory__arrow--next" type="button" aria-label="Следующие предложения">
+            <svg viewBox="0 0 18 18" fill="none">
+              <path d="M6.5 3.8L11.6 9L6.5 14.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="car-modal" id="car-modal" aria-hidden="true">
+      <div class="car-modal__panel" role="dialog" aria-modal="true" aria-labelledby="car-modal-title">
+        <button class="car-modal__close" type="button" aria-label="Закрыть окно" data-car-modal-close>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="car-modal__media">
+          <img class="car-modal__image" src="./assets/mustang.png" alt="" data-car-modal-image />
+        </div>
+
+        <div class="car-modal__body">
+          <div class="car-modal__meta">
+            <span class="car-modal__status car-modal__status--available" data-car-modal-status>В наличии</span>
+            <span class="car-modal__country" data-car-modal-country>США</span>
+          </div>
+
+          <h2 class="car-modal__title" id="car-modal-title" data-car-modal-title>Ford Mustang GT 5.0</h2>
+          <p class="car-modal__lead" data-car-modal-lead></p>
+
+          <div class="car-modal__specs" data-car-modal-specs></div>
+
+          <div class="car-modal__pricing">
+            <div class="car-modal__price" data-car-modal-price>$32 900</div>
+            <div class="car-modal__price-rub" data-car-modal-price-rub>≈ 3 050 000 ₽</div>
+          </div>
+
+          <ul class="car-modal__highlights" data-car-modal-highlights></ul>
+
+          <div class="car-modal__actions">
+            <a class="car-modal__cta" href="./order.html" data-car-modal-order>Отправить заявку</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="process" aria-labelledby="process-title">
+      <div class="process__inner">
+        <div class="process__eyebrow">Как мы работаем</div>
+        <h2 class="process__title" id="process-title">Простой и понятный процесс</h2>
+
+        <div class="process__steps">
+          <article class="process__step">
+            <div class="process__step-top">
+              <div class="process__number">01</div>
+              <div class="process__icon" aria-hidden="true">
+                <img src="./assets/process-step-consult.png" alt="" />
+              </div>
+              <span class="process__connector" aria-hidden="true"></span>
+            </div>
+            <h3 class="process__name">Консультация и подбор</h3>
+            <p class="process__desc">
+              Обсуждаем ваши пожелания, подбираем лучшие варианты под бюджет.
+            </p>
+          </article>
+
+          <article class="process__step">
+            <div class="process__step-top">
+              <div class="process__number">02</div>
+              <div class="process__icon" aria-hidden="true">
+                <img src="./assets/process-step-auction.png" alt="" />
+              </div>
+              <span class="process__connector" aria-hidden="true"></span>
+            </div>
+            <h3 class="process__name">Торги и покупка</h3>
+            <p class="process__desc">
+              Участвуем в торгах и выкупаем автомобиль по лучшей цене.
+            </p>
+          </article>
+
+          <article class="process__step">
+            <div class="process__step-top">
+              <div class="process__number">03</div>
+              <div class="process__icon" aria-hidden="true">
+                <img src="./assets/process-step-delivery.png" alt="" />
+              </div>
+              <span class="process__connector" aria-hidden="true"></span>
+            </div>
+            <h3 class="process__name">Доставка и таможня</h3>
+            <p class="process__desc">
+              Доставляем автомобиль и оформляем все необходимые документы.
+            </p>
+          </article>
+
+          <article class="process__step">
+            <div class="process__step-top">
+              <div class="process__number">04</div>
+              <div class="process__icon" aria-hidden="true">
+                <img src="./assets/process-step-receive.png" alt="" />
+              </div>
+              <span class="process__connector" aria-hidden="true"></span>
+            </div>
+            <h3 class="process__name">Вы получаете авто</h3>
+            <p class="process__desc">
+              Передаём автомобиль в вашем городе и поддерживаем после сделки.
+            </p>
+          </article>
+
+          <article class="process__step">
+            <div class="process__step-top">
+              <div class="process__number">05</div>
+              <div class="process__icon" aria-hidden="true">
+                <img src="./assets/process-step-support.png" alt="" />
+              </div>
+              <span class="process__connector" aria-hidden="true"></span>
+            </div>
+            <h3 class="process__name">Поддержка</h3>
+            <p class="process__desc">
+              Всегда на связи и готовы помочь по любым вопросам.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" aria-labelledby="reviews-title">
+      <div class="reviews__inner">
+        <div class="reviews__eyebrow">Отзывы клиентов</div>
+        <h2 class="reviews__title" id="reviews-title">Нам доверяют</h2>
+
+        <div class="reviews__grid">
+          <article class="reviews__card">
+            <div class="reviews__head">
+              <div class="reviews__avatar" aria-hidden="true">
+                <svg viewBox="0 0 88 88" fill="none">
+                  <defs>
+                    <radialGradient id="alex-bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(44 18) rotate(90) scale(74)">
+                      <stop stop-color="#D4D5D7"/>
+                      <stop offset="1" stop-color="#8C8F95"/>
+                    </radialGradient>
+                  </defs>
+                  <rect width="88" height="88" rx="44" fill="url(#alex-bg)"/>
+                  <path d="M20 88C23 68 32 58 44 58C56 58 65 68 68 88H20Z" fill="#11161D"/>
+                  <path d="M31 33C31 25.3 36.8 18 44 18C51.2 18 57 25.3 57 33V41C57 49 51.2 55 44 55C36.8 55 31 49 31 41V33Z" fill="#F0CFBE"/>
+                  <path d="M28 32C28 21.8 35.1 15 44 15C52.9 15 60 21.8 60 32V34.5C56.7 31.8 52.8 30.4 49.5 30.2C44 29.8 38 31.8 31.4 39.5L28 38.5V32Z" fill="#171A20"/>
+                  <circle cx="39" cy="39.5" r="1.2" fill="#2A1F1C"/>
+                  <circle cx="49" cy="39.5" r="1.2" fill="#2A1F1C"/>
+                  <path d="M40 46C42.2 47.5 45.8 47.5 48 46" stroke="#9A6156" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="reviews__person">
+                <h3 class="reviews__name">Алексей, Москва</h3>
+                <div class="reviews__meta">
+                  <div class="reviews__stars" aria-label="5 из 5">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                  </div>
+                  <span class="reviews__date">14 мая 2024</span>
+                </div>
+              </div>
+            </div>
+            <p class="reviews__text">
+              Привёз себе Mustang из США. Всё чётко, без подводных камней. На каждом этапе были на связи. Рекомендую!
+            </p>
+          </article>
+
+          <article class="reviews__card">
+            <div class="reviews__head">
+              <div class="reviews__avatar" aria-hidden="true">
+                <svg viewBox="0 0 88 88" fill="none">
+                  <defs>
+                    <radialGradient id="igor-bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(44 18) rotate(90) scale(74)">
+                      <stop stop-color="#CFC7BE"/>
+                      <stop offset="1" stop-color="#7A7E85"/>
+                    </radialGradient>
+                  </defs>
+                  <rect width="88" height="88" rx="44" fill="url(#igor-bg)"/>
+                  <path d="M20 88C22 67 31 58 44 58C57 58 66 67 68 88H20Z" fill="#14181F"/>
+                  <path d="M31 34C31 25.8 36.9 18 44 18C51.1 18 57 25.8 57 34V40.8C57 48.6 51.1 55 44 55C36.9 55 31 48.6 31 40.8V34Z" fill="#E8C2A6"/>
+                  <path d="M28.5 34.5C28.5 23.8 35.5 16.5 44 16.5C52.5 16.5 59.5 23.8 59.5 34.5L56.5 33C52.8 30.9 48.7 29.8 44.4 29.8H39.7C35.8 29.8 32.2 31.3 29 34L28.5 34.5Z" fill="#13161B"/>
+                  <rect x="31" y="36.4" width="11" height="7.4" rx="3.7" fill="#171B23"/>
+                  <rect x="46" y="36.4" width="11" height="7.4" rx="3.7" fill="#171B23"/>
+                  <path d="M42 40H46" stroke="#171B23" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M40.5 47.5C42.5 48.7 45.5 48.7 47.5 47.5" stroke="#9A6156" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="reviews__person">
+                <h3 class="reviews__name">Игорь, Краснодар</h3>
+                <div class="reviews__meta">
+                  <div class="reviews__stars" aria-label="5 из 5">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                  </div>
+                  <span class="reviews__date">7 апреля 2024</span>
+                </div>
+              </div>
+            </div>
+            <p class="reviews__text">
+              Toyota Supra из Японии. Пробег как в описании, состояние идеальное. Цены адекватные, всё честно.
+            </p>
+          </article>
+
+          <article class="reviews__card">
+            <div class="reviews__head">
+              <div class="reviews__avatar" aria-hidden="true">
+                <svg viewBox="0 0 88 88" fill="none">
+                  <defs>
+                    <radialGradient id="maria-bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(44 18) rotate(90) scale(74)">
+                      <stop stop-color="#D2B29F"/>
+                      <stop offset="1" stop-color="#6F544A"/>
+                    </radialGradient>
+                  </defs>
+                  <rect width="88" height="88" rx="44" fill="url(#maria-bg)"/>
+                  <path d="M18 88C21 69 30 58 44 58C58 58 67 69 70 88H18Z" fill="#1B1416"/>
+                  <path d="M31 35C31 25.8 36.9 19 44 19C51.1 19 57 25.8 57 35V41.2C57 49.1 51.1 55 44 55C36.9 55 31 49.1 31 41.2V35Z" fill="#F2C3AF"/>
+                  <path d="M25.5 36.5C25.5 21.9 35.5 14.5 44 14.5C52.5 14.5 62.5 21.9 62.5 36.5L58 31.5C54 27.1 49.7 24.8 44.2 24.8C38.2 24.8 33.3 27.8 29.7 32.4L25.5 36.5Z" fill="#8C6248"/>
+                  <path d="M25.5 35.5C28 48.8 35.8 56 44 56C52.2 56 60 48.8 62.5 35.5C61 43.4 57.8 47.6 54 49.8C49.5 52.4 38.5 52.5 34 49.8C30.2 47.6 27 43.4 25.5 35.5Z" fill="#B78163"/>
+                  <circle cx="39" cy="39.5" r="1.2" fill="#4B322D"/>
+                  <circle cx="49" cy="39.5" r="1.2" fill="#4B322D"/>
+                  <path d="M39.8 46C42.2 47.9 45.8 47.9 48.2 46" stroke="#A56A60" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="reviews__person">
+                <h3 class="reviews__name">Мария, Екатеринбург</h3>
+                <div class="reviews__meta">
+                  <div class="reviews__stars" aria-label="5 из 5">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8L14.84 8.56L21.2 9.49L16.6 13.98L17.68 20.32L12 17.34L6.32 20.32L7.4 13.98L2.8 9.49L9.16 8.56L12 2.8Z"/></svg>
+                  </div>
+                  <span class="reviews__date">21 января 2024</span>
+                </div>
+              </div>
+            </div>
+            <p class="reviews__text">
+              Lexus NX 350 F Sport. Очень довольна покупкой и сервисом. Всё прошло быстро и прозрачно.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="application" aria-labelledby="application-title">
+      <div class="application__inner">
+        <div class="application__panel">
+          <div class="application__grid">
+            <div class="application__copy">
+              <h2 class="application__title" id="application-title">Подберём ваш идеальный автомобиль</h2>
+              <p class="application__text">
+                Оставьте заявку — получите бесплатную консультацию и расчёт стоимости под ключ.
+              </p>
+            </div>
+
+            <form class="application__form" data-application-form>
+              <label class="application__field">
+                <input class="application__control" type="text" name="name" placeholder="Ваше имя" autocomplete="name" />
+              </label>
+
+              <label class="application__field">
+                <input class="application__control" type="tel" name="phone" placeholder="Телефон" autocomplete="tel" />
+              </label>
+
+              <label class="application__field application__field--wide">
+                <input class="application__control" type="text" name="car" placeholder="Интересующий автомобиль" autocomplete="off" />
+              </label>
+
+              <div class="application__field application__field--submit">
+                <button class="application__submit" type="submit">Отправить заявку</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="application__bottom">
+            <div class="application__benefits" aria-label="Преимущества заявки">
+              <div class="application__benefit">
+                <span class="application__benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M5.5 12.8L9.6 16.6L18.5 7.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Бесплатная консультация</span>
+              </div>
+
+              <div class="application__benefit">
+                <span class="application__benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M5.5 12.8L9.6 16.6L18.5 7.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Прозрачный расчёт</span>
+              </div>
+
+              <div class="application__benefit">
+                <span class="application__benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M5.5 12.8L9.6 16.6L18.5 7.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Без скрытых платежей</span>
+              </div>
+            </div>
+
+            <div class="application__note">
+              Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <h2 class="site-footer__logo">IMPORT <span>DRIVE</span></h2>
+            <p class="site-footer__tagline">Автомобили из США и Японии<br />с доставкой в Беларусь</p>
+          </div>
+
+          <div>
+            <h3 class="site-footer__title">Услуги</h3>
+            <ul class="site-footer__list">
+              <li>Подбор авто</li>
+              <li>Покупка на аукционах</li>
+              <li>Доставка</li>
+              <li>Таможенное оформление</li>
+              <li>Помощь в постановке на учёт</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="site-footer__title">Контакты</h3>
+            <div class="site-footer__contacts">
+              <div class="site-footer__contact">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7.4 4.8H10.3L11.8 8.6L10 10.2C11 12.2 12.8 14 14.8 15L16.4 13.2L20.2 14.7V17.6C20.2 18.7 19.3 19.6 18.2 19.6H17.1C9.9 19.2 4.8 14.1 4.4 6.9V5.8C4.4 4.7 5.3 3.8 6.4 3.8H7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>+375 (29) 612-45-67</span>
+              </div>
+
+              <div class="site-footer__contact">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7.4 4.8H10.3L11.8 8.6L10 10.2C11 12.2 12.8 14 14.8 15L16.4 13.2L20.2 14.7V17.6C20.2 18.7 19.3 19.6 18.2 19.6H17.1C9.9 19.2 4.8 14.1 4.4 6.9V5.8C4.4 4.7 5.3 3.8 6.4 3.8H7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>+375 (33) 684-20-10</span>
+              </div>
+
+              <div class="site-footer__contact">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M5.5 7.5L12 12.7L18.5 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>hello@importdrive.by</span>
+              </div>
+
+              <div class="site-footer__contact">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 20C15.6 16.4 18.5 13.3 18.5 9.7C18.5 6.2 15.6 3.5 12 3.5C8.4 3.5 5.5 6.2 5.5 9.7C5.5 13.3 8.4 16.4 12 20Z" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="12" cy="9.7" r="2.4" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <span>г. Минск, пр-т Победителей, 63</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="site-footer__title">Мы в соцсетях</h3>
+            <div class="site-footer__socials">
+              <a class="site-footer__social" href="#" aria-label="Telegram">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20.5 5.2L17.8 18.3C17.6 19.2 17 19.4 16.2 19L12 15.9L10 17.8C9.8 18 9.6 18.2 9.1 18.2L9.4 14.1L16.9 7.3C17.2 7 16.9 6.9 16.5 7.2L7.2 13.1L3.2 11.8C2.4 11.5 2.4 11 3.3 10.7L19.2 4.6C20 4.3 20.7 4.8 20.5 5.2Z" fill="currentColor"/>
+                </svg>
+              </a>
+
+              <a class="site-footer__social" href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="4.2" y="4.2" width="15.6" height="15.6" rx="4.5" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="17.2" cy="6.9" r="1" fill="currentColor"/>
+                </svg>
+              </a>
+
+              <a class="site-footer__social" href="#" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20.8 8.3C20.6 7.3 19.8 6.5 18.8 6.3C17.1 6 12 6 12 6C12 6 6.9 6 5.2 6.3C4.2 6.5 3.4 7.3 3.2 8.3C3 10 3 12 3 12C3 12 3 14 3.2 15.7C3.4 16.7 4.2 17.5 5.2 17.7C6.9 18 12 18 12 18C12 18 17.1 18 18.8 17.7C19.8 17.5 20.6 16.7 20.8 15.7C21 14 21 12 21 12C21 12 21 10 20.8 8.3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M10.3 14.9L14.8 12L10.3 9.1V14.9Z" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="order-modal" id="order-modal" aria-hidden="true">
+      <div class="order-modal__panel" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+        <button class="order-modal__close" type="button" aria-label="Закрыть окно" data-order-modal-close>
+          <svg viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <path d="M9 9L27 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M27 9L9 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="order-modal__visual">
+          <div class="order-modal__visual-content">
+            <div class="order-modal__brand" aria-label="Import Drive">
+              <svg class="brand__mark" viewBox="0 0 61 50" fill="none" aria-hidden="true">
+                <path d="M3 46L15.5 4H31L18.5 46H3Z" fill="#F6F8FA"/>
+                <path d="M19.3 46L31.8 4H45.8L33.3 46H19.3Z" fill="#F6F8FA"/>
+                <path d="M32.7 46L45.2 4H58L42.3 25.2L55.2 46H32.7Z" fill="#E2362F"/>
+                <path d="M7 39.5L15.6 10.4H21L12.3 39.5H7Z" fill="#08111A"/>
+                <path d="M17.4 39.5L26.1 10.4H31.5L22.8 39.5H17.4Z" fill="#08111A"/>
+              </svg>
+              <span class="brand__copy">
+                <span class="brand__title">IMPORT <span>DRIVE</span></span>
+                <span class="brand__subtitle">Автомобили из США и Японии</span>
+              </span>
+            </div>
+
+            <h2 class="order-modal__title" id="order-modal-title">
+              Подберём ваш идеальный автомобиль
+            </h2>
+            <p class="order-modal__text">
+              Оставьте заявку — получите бесплатную консультацию и расчёт стоимости под ключ.
+            </p>
+
+            <div class="order-modal__proof" aria-label="Преимущества заявки">
+              <div class="order-modal__proof-item">
+                <svg class="order-modal__proof-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3L18.5 5.5V11.3C18.5 15.5 15.8 19.3 12 20.8C8.2 19.3 5.5 15.5 5.5 11.3V5.5L12 3Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M9.5 11.8L11.2 13.5L14.8 9.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Бесплатная консультация</span>
+              </div>
+              <div class="order-modal__proof-item">
+                <svg class="order-modal__proof-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="6" y="3.5" width="12" height="17" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M9 8H15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M9 12H10.2M13.4 12H15M9 15.8H10.2M13.4 15.8H15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+                <span>Прозрачный расчёт</span>
+              </div>
+              <div class="order-modal__proof-item">
+                <svg class="order-modal__proof-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3L18.5 5.5V11.3C18.5 15.5 15.8 19.3 12 20.8C8.2 19.3 5.5 15.5 5.5 11.3V5.5L12 3Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M9.5 11.8L11.2 13.5L14.8 9.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Без скрытых платежей</span>
+              </div>
+            </div>
+
+            <div class="order-modal__markets">
+              <div class="hero__flags" aria-hidden="true">
+                <span class="flag">
+                  <svg viewBox="0 0 28 20">
+                    <rect width="28" height="20" fill="#fff"/>
+                    <rect width="28" height="1.54" y="1.54" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="4.62" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="7.69" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="10.77" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="13.85" fill="#c8342d"/>
+                    <rect width="28" height="1.54" y="16.92" fill="#c8342d"/>
+                    <rect width="12.5" height="10.8" fill="#244a94"/>
+                  </svg>
+                </span>
+                <span class="flag">
+                  <svg viewBox="0 0 28 20">
+                    <rect width="28" height="20" fill="#fff"/>
+                    <circle cx="14" cy="10" r="5.3" fill="#c62b32"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="order-modal__markets-text">
+                Работаем с аукционами США и Японии ежедневно
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-modal__form-wrap">
+          <form class="order-form">
+            <label class="order-form__field">
+              <span class="order-form__label">Ваше имя</span>
+              <input class="order-form__control" type="text" name="name" placeholder="Введите ваше имя" autocomplete="name" />
+            </label>
+
+            <label class="order-form__field">
+              <span class="order-form__label">Телефон</span>
+              <input class="order-form__control" type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" />
+            </label>
+
+            <label class="order-form__field">
+              <span class="order-form__label">Интересующий автомобиль</span>
+              <input class="order-form__control order-form__select" type="text" name="car" placeholder="Марка, модель, год (необязательно)" list="car-options" data-order-car />
+              <datalist id="car-options">
+                <option value="Ford Mustang GT 5.0"></option>
+                <option value="Toyota Supra RZ 3.0"></option>
+                <option value="Tesla Model 3 Performance"></option>
+                <option value="Lexus NX 350 F Sport"></option>
+              </datalist>
+            </label>
+
+            <label class="order-form__field">
+              <span class="order-form__label">Дополнительная информация</span>
+              <span class="order-form__textarea-wrap">
+                <textarea class="order-form__control order-form__textarea" name="message" maxlength="500" placeholder="Расскажите о ваших пожеланиях, бюджете и сроках" data-order-message></textarea>
+                <span class="order-form__counter" data-order-counter>0/500</span>
+              </span>
+            </label>
+
+            <button class="order-form__submit" type="submit">
+              <span>Отправить заявку</span>
+              <svg viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                <path d="M6 18H28" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M20 9L29 18L20 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <p class="order-form__note">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="currentColor" fill-opacity="0.82"/>
+                <path d="M8.5 10V7.8C8.5 5.9 10 4.5 12 4.5C14 4.5 15.5 5.9 15.5 7.8V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+              <span>Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности и на обработку персональных данных</span>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const filterButtons = Array.from(document.querySelectorAll("[data-country-filter]"));
+        const cards = Array.from(document.querySelectorAll(".inventory__card[data-country]"));
+
+        if (!filterButtons.length || !cards.length) {
+          return;
+        }
+
+        function getActiveCountries() {
+          return filterButtons
+            .filter((button) => button.getAttribute("aria-pressed") === "true")
+            .map((button) => button.dataset.countryFilter);
+        }
+
+        function applyCountryFilter() {
+          const activeCountries = getActiveCountries();
+          const visibleCountries = activeCountries.length ? activeCountries : ["usa", "japan"];
+
+          cards.forEach((card) => {
+            card.hidden = !visibleCountries.includes(card.dataset.country);
+          });
+        }
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const currentlyPressed = button.getAttribute("aria-pressed") === "true";
+            const activeCountries = getActiveCountries();
+
+            if (currentlyPressed && activeCountries.length === 1) {
+              filterButtons.forEach((item) => item.setAttribute("aria-pressed", "true"));
+            } else {
+              button.setAttribute("aria-pressed", currentlyPressed ? "false" : "true");
+            }
+
+            applyCountryFilter();
+          });
+        });
+
+        applyCountryFilter();
+      })();
+
+      (function () {
+        const form = document.querySelector("[data-application-form]");
+
+        if (!form) {
+          return;
+        }
+
+        const nameInput = form.querySelector("input[name='name']");
+        const phoneInput = form.querySelector("input[name='phone']");
+        const carInput = form.querySelector("input[name='car']");
+
+        if (phoneInput) {
+          phoneInput.addEventListener("input", () => {
+            const digits = phoneInput.value.replace(/\D/g, "").slice(0, 12);
+            const normalized = digits.startsWith("80")
+              ? `375${digits.slice(2)}`
+              : digits.startsWith("375")
+                ? digits
+                : digits.startsWith("8")
+                  ? `375${digits.slice(1)}`
+                  : digits;
+            const local = normalized.startsWith("375") ? normalized.slice(3, 12) : normalized.slice(0, 9);
+            const parts = [
+              local.slice(0, 2),
+              local.slice(2, 5),
+              local.slice(5, 7),
+              local.slice(7, 9),
+            ].filter(Boolean);
+
+            if (!parts.length) {
+              phoneInput.value = "";
+              return;
+            }
+
+            phoneInput.value = `+375${parts[0] ? ` (${parts[0]}` : ""}${parts[0] && parts[0].length === 2 ? ")" : ""}${parts[1] ? ` ${parts[1]}` : ""}${parts[2] ? `-${parts[2]}` : ""}${parts[3] ? `-${parts[3]}` : ""}`;
+          });
+        }
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const params = new URLSearchParams();
+
+          if (nameInput && nameInput.value.trim()) {
+            params.set("name", nameInput.value.trim());
+          }
+
+          if (phoneInput && phoneInput.value.trim()) {
+            params.set("phone", phoneInput.value.trim());
+          }
+
+          if (carInput && carInput.value.trim()) {
+            params.set("car", carInput.value.trim());
+          }
+
+          window.location.href = `./order.html${params.toString() ? `?${params.toString()}` : ""}`;
+        });
+      })();
+
+      (function () {
+        const carCatalog = {
+          mustang: {
+            name: "Ford Mustang GT 5.0",
+            image: "./assets/mustang.png",
+            status: "В наличии",
+            statusModifier: "available",
+            country: "США",
+            price: "$32 900",
+            priceRub: "≈ 3 050 000 ₽",
+            lead: "Яркое купе с атмосферным V8 и классическим задним приводом. Хороший вариант, если хочется эмоциональный автомобиль с понятной конфигурацией.",
+            specs: [
+              ["Год", "2021"],
+              ["Пробег", "27 000 км"],
+              ["Двигатель", "5.0 л"],
+              ["Топливо", "Бензин"],
+              ["Коробка", "АКПП"],
+              ["Привод", "RWD"],
+            ],
+            highlights: [
+              "Подходит для тех, кто ищет выразительное спортивное купе на каждый день.",
+              "Перед покупкой подготовим фотоотчёт, проверку истории и расчёт под ключ.",
+              "Поможем с доставкой, таможней и выдачей автомобиля в вашем городе.",
+            ],
+          },
+          supra: {
+            name: "Toyota Supra RZ 3.0",
+            image: "./assets/supra.png",
+            status: "В пути",
+            statusModifier: "transit",
+            country: "Япония",
+            price: "$48 500",
+            priceRub: "≈ 4 450 000 ₽",
+            lead: "Современное спортивное купе с 3.0-литровым мотором и задним приводом. Подойдёт, если нужен баланс яркой динамики и японской школы настройки.",
+            specs: [
+              ["Год", "2022"],
+              ["Пробег", "18 000 км"],
+              ["Двигатель", "3.0 л"],
+              ["Топливо", "Бензин"],
+              ["Коробка", "АКПП"],
+              ["Привод", "RWD"],
+            ],
+            highlights: [
+              "Небольшой пробег и спортивная конфигурация делают модель интересной для энтузиастов.",
+              "Покажем состояние по фото и документам до финального решения о покупке.",
+              "Сопроводим логистику из Японии и все этапы оформления под ключ.",
+            ],
+          },
+          tesla: {
+            name: "Tesla Model 3 Performance",
+            image: "./assets/tesla.png",
+            status: "В пути",
+            statusModifier: "transit",
+            country: "США",
+            price: "$36 900",
+            priceRub: "≈ 3 410 000 ₽",
+            lead: "Быстрый электрический седан с полным приводом и современной цифровой архитектурой. Хороший выбор для тех, кому важны динамика и технологичность.",
+            specs: [
+              ["Год", "2022"],
+              ["Пробег", "15 000 км"],
+              ["Силовая установка", "Электро"],
+              ["Коробка", "АКПП"],
+              ["Привод", "AWD"],
+              ["Статус", "В пути"],
+            ],
+            highlights: [
+              "Performance-версия подойдёт для активной городской езды и дальних поездок.",
+              "До покупки подготовим расчёт расходов и прогноз сроков доставки.",
+              "Проверим состояние автомобиля и историю перед финальным согласованием.",
+            ],
+          },
+          lexus: {
+            name: "Lexus NX 350 F Sport",
+            image: "./assets/lexus.png",
+            status: "В наличии",
+            statusModifier: "available",
+            country: "Япония",
+            price: "$42 800",
+            priceRub: "≈ 3 980 000 ₽",
+            lead: "Премиальный кроссовер с акцентом на комфорт, управляемость и ежедневную практичность. Подойдёт для семейного использования и поездок на каждый день.",
+            specs: [
+              ["Год", "2022"],
+              ["Пробег", "24 000 км"],
+              ["Двигатель", "2.4 л"],
+              ["Топливо", "Бензин"],
+              ["Коробка", "АКПП"],
+              ["Привод", "AWD"],
+            ],
+            highlights: [
+              "F Sport подчёркивает более динамичный характер и выразительный внешний вид.",
+              "Подготовим подробный расчёт стоимости, включая доставку и растаможку.",
+              "Сопроводим сделку, документы и передачу автомобиля после прибытия.",
+            ],
+          },
+        };
+
+        const carModal = document.getElementById("car-modal");
+        const carModalOpenButtons = Array.from(document.querySelectorAll("[data-car-modal-open]"));
+        const carModalCloseButtons = Array.from(document.querySelectorAll("[data-car-modal-close]"));
+        const carModalImage = document.querySelector("[data-car-modal-image]");
+        const carModalStatus = document.querySelector("[data-car-modal-status]");
+        const carModalCountry = document.querySelector("[data-car-modal-country]");
+        const carModalTitle = document.querySelector("[data-car-modal-title]");
+        const carModalLead = document.querySelector("[data-car-modal-lead]");
+        const carModalSpecs = document.querySelector("[data-car-modal-specs]");
+        const carModalPrice = document.querySelector("[data-car-modal-price]");
+        const carModalPriceRub = document.querySelector("[data-car-modal-price-rub]");
+        const carModalHighlights = document.querySelector("[data-car-modal-highlights]");
+        const carModalOrderLink = document.querySelector("[data-car-modal-order]");
+
+        if (!carModal || !carModalOpenButtons.length) {
+          return;
+        }
+
+        let previousFocus = null;
+
+        function renderCarModal(car) {
+          if (!car) {
+            return;
+          }
+
+          if (carModalImage) {
+            carModalImage.src = car.image;
+            carModalImage.alt = car.name;
+          }
+
+          if (carModalStatus) {
+            carModalStatus.textContent = car.status;
+            carModalStatus.className = `car-modal__status car-modal__status--${car.statusModifier}`;
+          }
+
+          if (carModalCountry) {
+            carModalCountry.textContent = car.country;
+          }
+
+          if (carModalTitle) {
+            carModalTitle.textContent = car.name;
+          }
+
+          if (carModalLead) {
+            carModalLead.textContent = car.lead;
+          }
+
+          if (carModalSpecs) {
+            carModalSpecs.innerHTML = car.specs
+              .map(
+                ([label, value]) => `
+                  <div class="car-modal__spec">
+                    <span class="car-modal__spec-label">${label}</span>
+                    <span class="car-modal__spec-value">${value}</span>
+                  </div>
+                `,
+              )
+              .join("");
+          }
+
+          if (carModalPrice) {
+            carModalPrice.textContent = car.price;
+          }
+
+          if (carModalPriceRub) {
+            carModalPriceRub.textContent = car.priceRub;
+          }
+
+          if (carModalHighlights) {
+            carModalHighlights.innerHTML = car.highlights.map((item) => `<li>${item}</li>`).join("");
+          }
+
+          if (carModalOrderLink) {
+            carModalOrderLink.href = `./order.html?car=${encodeURIComponent(car.name)}`;
+          }
+        }
+
+        function openCarModal(carId) {
+          const car = carCatalog[carId];
+          if (!car) {
+            return;
+          }
+
+          previousFocus = document.activeElement;
+          renderCarModal(car);
+          carModal.classList.add("is-open");
+          carModal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("is-modal-open");
+
+          const firstFocusable = carModal.querySelector("button, a");
+          if (firstFocusable) {
+            firstFocusable.focus({ preventScroll: true });
+          }
+        }
+
+        function closeCarModal() {
+          carModal.classList.remove("is-open");
+          carModal.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("is-modal-open");
+
+          if (previousFocus && typeof previousFocus.focus === "function") {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+
+        carModalOpenButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            openCarModal(button.dataset.carId || "");
+          });
+        });
+
+        carModalCloseButtons.forEach((button) => {
+          button.addEventListener("click", closeCarModal);
+        });
+
+        carModal.addEventListener("click", (event) => {
+          if (event.target === carModal) {
+            closeCarModal();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && carModal.classList.contains("is-open")) {
+            closeCarModal();
+          }
+        });
+      })();
+
+      (function () {
+        const modal = document.getElementById("order-modal");
+        const openButtons = Array.from(document.querySelectorAll("[data-order-modal-open]"));
+        const closeButtons = Array.from(document.querySelectorAll("[data-order-modal-close]"));
+        const nameInput = document.querySelector(".order-form input[name='name']");
+        const carInput = document.querySelector("[data-order-car]");
+        const messageInput = document.querySelector("[data-order-message]");
+        const counter = document.querySelector("[data-order-counter]");
+        const phoneInput = document.querySelector(".order-form input[name='phone']");
+        const form = document.querySelector(".order-form");
+
+        if (!modal || !openButtons.length) {
+          return;
+        }
+
+        let previousFocus = null;
+
+        function updateCounter() {
+          if (!messageInput || !counter) {
+            return;
+          }
+
+          counter.textContent = `${messageInput.value.length}/500`;
+        }
+
+        function openModal(carName) {
+          previousFocus = document.activeElement;
+          if (carInput && carName) {
+            carInput.value = carName;
+          }
+
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("is-modal-open");
+
+          const firstInput = modal.querySelector("input, textarea, button");
+          if (firstInput) {
+            firstInput.focus({ preventScroll: true });
+          }
+        }
+
+        function closeModal() {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("is-modal-open");
+
+          if (previousFocus && typeof previousFocus.focus === "function") {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+
+        openButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            openModal(button.dataset.carName || "");
+          });
+        });
+
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", closeModal);
+        });
+
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && modal.classList.contains("is-open")) {
+            closeModal();
+          }
+        });
+
+        if (messageInput) {
+          messageInput.addEventListener("input", updateCounter);
+          updateCounter();
+        }
+
+        if (phoneInput) {
+          phoneInput.addEventListener("input", () => {
+            const digits = phoneInput.value.replace(/\D/g, "").slice(0, 11);
+            const normalized = digits.startsWith("8") ? `7${digits.slice(1)}` : digits;
+            const local = normalized.startsWith("7") ? normalized.slice(1) : normalized;
+            const parts = [
+              local.slice(0, 3),
+              local.slice(3, 6),
+              local.slice(6, 8),
+              local.slice(8, 10),
+            ].filter(Boolean);
+
+            if (!parts.length) {
+              phoneInput.value = "";
+              return;
+            }
+
+            phoneInput.value = `+7 ${parts[0] ? `(${parts[0]}` : ""}${parts[0] && parts[0].length === 3 ? ")" : ""}${parts[1] ? ` ${parts[1]}` : ""}${parts[2] ? `-${parts[2]}` : ""}${parts[3] ? `-${parts[3]}` : ""}`;
+          });
+        }
+
+        if (form) {
+          form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const params = new URLSearchParams();
+
+            if (nameInput && nameInput.value.trim()) {
+              params.set("name", nameInput.value.trim());
+            }
+
+            if (phoneInput && phoneInput.value.trim()) {
+              params.set("phone", phoneInput.value.trim());
+            }
+
+            if (carInput && carInput.value.trim()) {
+              params.set("car", carInput.value.trim());
+            }
+
+            if (messageInput && messageInput.value.trim()) {
+              params.set("message", messageInput.value.trim());
+            }
+
+            window.location.href = `./order.html${params.toString() ? `?${params.toString()}` : ""}`;
+          });
+        }
+
+        if (window.location.hash === "#order") {
+          openModal("");
+        }
+      })();
+    </script>
+  </body>
+</html>
