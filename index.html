@@ -251,7 +251,7 @@
         inset: 0;
         background:
           linear-gradient(90deg, rgba(4, 10, 18, 0.42) 0%, rgba(4, 10, 18, 0.16) 16%, rgba(4, 10, 18, 0.04) 36%, rgba(4, 10, 18, 0.02) 100%),
-          url("./assets/hero-scene-v3.png") center center / cover no-repeat;
+          url("./assets/hero-scene-v3.webp") center center / cover no-repeat;
       }
 
       .hero__shade {
@@ -1736,7 +1736,7 @@
         background:
           linear-gradient(90deg, rgba(3, 11, 19, 0.88) 0%, rgba(3, 11, 19, 0.48) 36%, rgba(3, 11, 19, 0.38) 100%),
           radial-gradient(620px 240px at 24% 100%, rgba(12, 51, 78, 0.28), transparent 70%),
-          url("./assets/hero-scene-v3.png") center center / cover no-repeat;
+          url("./assets/hero-scene-v3.webp") center center / cover no-repeat;
         opacity: 0.62;
       }
 
@@ -2184,6 +2184,7 @@
         padding: 8px;
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 14px;
+        overflow: hidden;
         background: rgba(255, 255, 255, 0.028);
         color: rgba(224, 231, 238, 0.74);
         transition:
@@ -2200,7 +2201,9 @@
       }
 
       .car-modal__thumb-image {
+        display: block;
         position: relative;
+        width: 100%;
         aspect-ratio: 1 / 1;
         border-radius: 10px;
         overflow: hidden;
@@ -2208,9 +2211,11 @@
       }
 
       .car-modal__thumb-image img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform-origin: center center;
         filter: saturate(0.94) brightness(0.86);
       }
 
@@ -2417,7 +2422,7 @@
         background:
           linear-gradient(180deg, rgba(4, 10, 17, 0.12) 0%, rgba(4, 10, 17, 0.18) 18%, rgba(4, 10, 17, 0.72) 54%, rgba(4, 10, 17, 0.95) 70%, rgba(4, 10, 17, 0.99) 100%),
           linear-gradient(90deg, rgba(4, 10, 17, 0.96) 0%, rgba(4, 10, 17, 0.91) 16%, rgba(4, 10, 17, 0.68) 34%, rgba(4, 10, 17, 0.26) 52%, rgba(4, 10, 17, 0.06) 72%, rgba(4, 10, 17, 0.04) 100%),
-          url("./assets/process-port-scene-v1.png") 66% 0 / cover no-repeat;
+          url("./assets/process-port-scene-v1.webp") 66% 0 / cover no-repeat;
         opacity: 0.98;
         pointer-events: none;
       }
@@ -2709,7 +2714,7 @@
       .order-modal {
         position: fixed;
         inset: 0;
-        z-index: 20;
+        z-index: 80;
         display: grid;
         place-items: center;
         padding: 28px;
@@ -2778,7 +2783,7 @@
         background:
           linear-gradient(90deg, rgba(4, 10, 17, 0.22), rgba(4, 10, 17, 0.84)),
           linear-gradient(180deg, rgba(4, 10, 17, 0.22), rgba(4, 10, 17, 0.86)),
-          url("./assets/mustang.png") 36% 68% / 125% auto no-repeat;
+          url("./assets/mustang.webp") 36% 68% / 125% auto no-repeat;
         filter: saturate(0.92) brightness(0.8);
         transform: scale(1.08);
       }
@@ -2927,15 +2932,6 @@
         box-shadow:
           inset 0 1px 0 rgba(255, 255, 255, 0.04),
           0 0 0 3px rgba(215, 52, 45, 0.12);
-      }
-
-      .order-form__select {
-        appearance: none;
-        padding-right: 58px;
-        background:
-          linear-gradient(45deg, transparent 50%, rgba(235, 240, 244, 0.7) 50%) calc(100% - 29px) 50% / 8px 8px no-repeat,
-          linear-gradient(135deg, rgba(235, 240, 244, 0.7) 50%, transparent 50%) calc(100% - 22px) 50% / 8px 8px no-repeat,
-          rgba(8, 16, 26, 0.55);
       }
 
       .order-form__textarea-wrap {
@@ -3699,7 +3695,7 @@
           background:
             linear-gradient(180deg, rgba(4, 10, 18, 0.18) 0%, rgba(4, 10, 18, 0.08) 20%, rgba(4, 10, 18, 0.24) 100%),
             linear-gradient(90deg, rgba(4, 10, 18, 0.68) 0%, rgba(4, 10, 18, 0.26) 42%, rgba(4, 10, 18, 0.1) 100%),
-            url("./assets/hero-scene-mobile-v1.png") center top / cover no-repeat;
+            url("./assets/hero-scene-mobile-v1.webp") center top / cover no-repeat;
         }
 
         .hero__shade {
@@ -4476,7 +4472,7 @@
           background:
             linear-gradient(180deg, rgba(4, 10, 17, 0.12) 0%, rgba(4, 10, 17, 0.18) 18%, rgba(4, 10, 17, 0.72) 54%, rgba(4, 10, 17, 0.95) 70%, rgba(4, 10, 17, 0.99) 100%),
             linear-gradient(90deg, rgba(4, 10, 17, 0.96) 0%, rgba(4, 10, 17, 0.91) 16%, rgba(4, 10, 17, 0.68) 34%, rgba(4, 10, 17, 0.26) 52%, rgba(4, 10, 17, 0.06) 72%, rgba(4, 10, 17, 0.04) 100%),
-            url("./assets/process-port-scene-v1.png") 72% 0 / 100% auto no-repeat;
+            url("./assets/process-port-scene-v1.webp") 72% 0 / 100% auto no-repeat;
         }
 
         .process__header {
@@ -4586,7 +4582,7 @@
           background:
             linear-gradient(90deg, rgba(4, 10, 17, 0.28), rgba(4, 10, 17, 0.82)),
             linear-gradient(180deg, rgba(4, 10, 17, 0.16), rgba(4, 10, 17, 0.9)),
-            url("./assets/mustang.png") 50% 88% / 160% auto no-repeat;
+            url("./assets/mustang.webp") 50% 88% / 160% auto no-repeat;
         }
 
         .order-modal__brand {
@@ -5069,7 +5065,7 @@
                 </span>
               </div>
               <div class="inventory__media">
-                <img src="./assets/mustang.png" alt="Ford Mustang GT 5.0" />
+                <img src="./assets/mustang.webp" alt="Ford Mustang GT 5.0" loading="lazy" decoding="async" />
               </div>
               <h3 class="inventory__name">Ford Mustang GT 5.0</h3>
               <p class="inventory__specs">2021 • 27 000 км • 5.0 л • Бензин • АКПП • RWD</p>
@@ -5096,7 +5092,7 @@
                 </span>
               </div>
               <div class="inventory__media">
-                <img src="./assets/supra.png" alt="Toyota Supra RZ 3.0" />
+                <img src="./assets/supra.webp" alt="Toyota Supra RZ 3.0" loading="lazy" decoding="async" />
               </div>
               <h3 class="inventory__name">Toyota Supra RZ 3.0</h3>
               <p class="inventory__specs">2022 • 18 000 км • 3.0 л • Бензин • АКПП • RWD</p>
@@ -5123,7 +5119,7 @@
                 </span>
               </div>
               <div class="inventory__media">
-                <img src="./assets/tesla.png" alt="Tesla Model 3 Performance" />
+                <img src="./assets/tesla.webp" alt="Tesla Model 3 Performance" loading="lazy" decoding="async" />
               </div>
               <h3 class="inventory__name">Tesla Model 3 Performance</h3>
               <p class="inventory__specs">2022 • 15 000 км • Электро • АКПП • AWD</p>
@@ -5150,7 +5146,7 @@
                 </span>
               </div>
               <div class="inventory__media">
-                <img src="./assets/lexus.png" alt="Lexus NX 350 F Sport" />
+                <img src="./assets/lexus.webp" alt="Lexus NX 350 F Sport" loading="lazy" decoding="async" />
               </div>
               <h3 class="inventory__name">Lexus NX 350 F Sport</h3>
               <p class="inventory__specs">2022 • 24 000 км • 2.4 л • Бензин • АКПП • AWD</p>
@@ -5177,7 +5173,7 @@
                 </span>
               </div>
               <div class="inventory__media">
-                <img src="./assets/tesla.png" alt="Kia EV6 GT-Line AWD" />
+                <img src="./assets/tesla.webp" alt="Kia EV6 GT-Line AWD" loading="lazy" decoding="async" />
               </div>
               <h3 class="inventory__name">Kia EV6 GT-Line AWD</h3>
               <p class="inventory__specs">2023 • 11 000 км • Электро • АКПП • AWD</p>
@@ -5204,7 +5200,7 @@
                 </span>
               </div>
               <div class="inventory__media">
-                <img src="./assets/lexus.png" alt="Mercedes-Benz GLE 450 4MATIC" />
+                <img src="./assets/lexus.webp" alt="Mercedes-Benz GLE 450 4MATIC" loading="lazy" decoding="async" />
               </div>
               <h3 class="inventory__name">Mercedes-Benz GLE 450 4MATIC</h3>
               <p class="inventory__specs">2022 • 19 000 км • 3.0 л • Бензин • АКПП • AWD</p>
@@ -5231,7 +5227,7 @@
                 </span>
               </div>
               <div class="inventory__media">
-                <img src="./assets/supra.png" alt="BMW 430i Coupe M Sport" />
+                <img src="./assets/supra.webp" alt="BMW 430i Coupe M Sport" loading="lazy" decoding="async" />
               </div>
               <h3 class="inventory__name">BMW 430i Coupe M Sport</h3>
               <p class="inventory__specs">2021 • 29 000 км • 2.0 л • Бензин • АКПП • RWD</p>
@@ -5273,7 +5269,7 @@
                 <path d="M14.8 5.5L8.5 12L14.8 18.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
-            <img class="car-modal__image" src="./assets/mustang.png" alt="" data-car-modal-image />
+            <img class="car-modal__image" src="./assets/mustang.webp" alt="" data-car-modal-image />
             <button class="car-modal__gallery-nav car-modal__gallery-nav--next" type="button" aria-label="Следующее фото" data-car-modal-gallery-next>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M9.2 5.5L15.5 12L9.2 18.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -5650,10 +5646,10 @@
                 <p class="faq__cta-text">Свяжитесь с нами — мы с радостью проконсультируем вас и разберём ваш сценарий покупки.</p>
               </div>
             </div>
-            <a class="faq__cta-button" href="#order">
+            <button class="faq__cta-button" type="button" data-order-modal-open>
               <span>Связаться с нами</span>
               <i class="ti ti-arrow-up-right"></i>
-            </a>
+            </button>
           </div>
 
           <div class="faq__benefits" aria-label="Преимущества сервиса">
@@ -6022,18 +6018,12 @@
 
             <label class="order-form__field">
               <span class="order-form__label">Телефон</span>
-              <input class="order-form__control" type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" />
+              <input class="order-form__control" type="tel" name="phone" placeholder="+375 (__) ___-__-__" autocomplete="tel" inputmode="tel" />
             </label>
 
             <label class="order-form__field">
               <span class="order-form__label">Интересующий автомобиль</span>
-              <input class="order-form__control order-form__select" type="text" name="car" placeholder="Марка, модель, год (необязательно)" list="car-options" data-order-car />
-              <datalist id="car-options">
-                <option value="Ford Mustang GT 5.0"></option>
-                <option value="Toyota Supra RZ 3.0"></option>
-                <option value="Tesla Model 3 Performance"></option>
-                <option value="Lexus NX 350 F Sport"></option>
-              </datalist>
+              <input class="order-form__control" type="text" name="car" placeholder="Марка, модель, год (необязательно)" autocomplete="off" data-order-car />
             </label>
 
             <label class="order-form__field">
@@ -6066,6 +6056,7 @@
 
     <script>
       (function () {
+        const brandLink = document.querySelector(".header .brand");
         const burgerButton = document.querySelector("[data-header-burger]");
         const menu = document.querySelector("[data-header-menu]");
         const closeButton = document.querySelector("[data-header-menu-close]");
@@ -6101,6 +6092,18 @@
 
         if (closeButton) {
           closeButton.addEventListener("click", closeMenu);
+        }
+
+        if (brandLink) {
+          brandLink.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            if (mobileMedia.matches) {
+              closeMenu();
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
         }
 
         menu.addEventListener("click", (event) => {
@@ -6411,8 +6414,8 @@
         const carCatalog = {
           mustang: {
             name: "Ford Mustang GT 5.0",
-            image: "./assets/mustang.png",
-            gallery: buildGallery("./assets/mustang.png", [
+            image: "./assets/mustang.webp",
+            gallery: buildGallery("./assets/mustang.webp", [
               { label: "Общий план", position: "center center", scale: 1 },
               { label: "Передняя часть", position: "26% 56%", scale: 1.18 },
               { label: "Боковой ракурс", position: "72% 54%", scale: 1.2 },
@@ -6439,8 +6442,8 @@
           },
           supra: {
             name: "Toyota Supra RZ 3.0",
-            image: "./assets/supra.png",
-            gallery: buildGallery("./assets/supra.png", [
+            image: "./assets/supra.webp",
+            gallery: buildGallery("./assets/supra.webp", [
               { label: "Общий план", position: "center center", scale: 1 },
               { label: "Передняя часть", position: "28% 54%", scale: 1.16 },
               { label: "Колесо и профиль", position: "74% 64%", scale: 1.24 },
@@ -6467,8 +6470,8 @@
           },
           tesla: {
             name: "Tesla Model 3 Performance",
-            image: "./assets/tesla.png",
-            gallery: buildGallery("./assets/tesla.png", [
+            image: "./assets/tesla.webp",
+            gallery: buildGallery("./assets/tesla.webp", [
               { label: "Общий план", position: "center center", scale: 1 },
               { label: "Передняя часть", position: "30% 55%", scale: 1.15 },
               { label: "Силуэт", position: "72% 56%", scale: 1.18 },
@@ -6495,8 +6498,8 @@
           },
           lexus: {
             name: "Lexus NX 350 F Sport",
-            image: "./assets/lexus.png",
-            gallery: buildGallery("./assets/lexus.png", [
+            image: "./assets/lexus.webp",
+            gallery: buildGallery("./assets/lexus.webp", [
               { label: "Общий план", position: "center center", scale: 1 },
               { label: "Передняя часть", position: "30% 52%", scale: 1.16 },
               { label: "Задний ракурс", position: "72% 52%", scale: 1.18 },
@@ -6523,8 +6526,8 @@
           },
           kia: {
             name: "Kia EV6 GT-Line AWD",
-            image: "./assets/tesla.png",
-            gallery: buildGallery("./assets/tesla.png", [
+            image: "./assets/tesla.webp",
+            gallery: buildGallery("./assets/tesla.webp", [
               { label: "Общий план", position: "center center", scale: 1 },
               { label: "Передняя часть", position: "28% 55%", scale: 1.16 },
               { label: "Профиль", position: "72% 56%", scale: 1.18 },
@@ -6551,8 +6554,8 @@
           },
           mercedes: {
             name: "Mercedes-Benz GLE 450 4MATIC",
-            image: "./assets/lexus.png",
-            gallery: buildGallery("./assets/lexus.png", [
+            image: "./assets/lexus.webp",
+            gallery: buildGallery("./assets/lexus.webp", [
               { label: "Общий план", position: "center center", scale: 1 },
               { label: "Передняя часть", position: "30% 52%", scale: 1.14 },
               { label: "Задний ракурс", position: "72% 52%", scale: 1.18 },
@@ -6579,8 +6582,8 @@
           },
           bmw: {
             name: "BMW 430i Coupe M Sport",
-            image: "./assets/supra.png",
-            gallery: buildGallery("./assets/supra.png", [
+            image: "./assets/supra.webp",
+            gallery: buildGallery("./assets/supra.webp", [
               { label: "Общий план", position: "center center", scale: 1 },
               { label: "Передняя часть", position: "28% 54%", scale: 1.16 },
               { label: "Профиль", position: "74% 60%", scale: 1.22 },
@@ -6943,7 +6946,8 @@
         }
 
         openButtons.forEach((button) => {
-          button.addEventListener("click", () => {
+          button.addEventListener("click", (event) => {
+            event.preventDefault();
             openModal(button.dataset.carName || "");
           });
         });
@@ -6971,14 +6975,20 @@
 
         if (phoneInput) {
           phoneInput.addEventListener("input", () => {
-            const digits = phoneInput.value.replace(/\D/g, "").slice(0, 11);
-            const normalized = digits.startsWith("8") ? `7${digits.slice(1)}` : digits;
-            const local = normalized.startsWith("7") ? normalized.slice(1) : normalized;
+            const digits = phoneInput.value.replace(/\D/g, "").slice(0, 12);
+            const normalized = digits.startsWith("80")
+              ? `375${digits.slice(2)}`
+              : digits.startsWith("375")
+                ? digits
+                : digits.startsWith("8")
+                  ? `375${digits.slice(1)}`
+                  : digits;
+            const local = normalized.startsWith("375") ? normalized.slice(3, 12) : normalized.slice(0, 9);
             const parts = [
-              local.slice(0, 3),
-              local.slice(3, 6),
-              local.slice(6, 8),
-              local.slice(8, 10),
+              local.slice(0, 2),
+              local.slice(2, 5),
+              local.slice(5, 7),
+              local.slice(7, 9),
             ].filter(Boolean);
 
             if (!parts.length) {
@@ -6986,7 +6996,7 @@
               return;
             }
 
-            phoneInput.value = `+7 ${parts[0] ? `(${parts[0]}` : ""}${parts[0] && parts[0].length === 3 ? ")" : ""}${parts[1] ? ` ${parts[1]}` : ""}${parts[2] ? `-${parts[2]}` : ""}${parts[3] ? `-${parts[3]}` : ""}`;
+            phoneInput.value = `+375${parts[0] ? ` (${parts[0]}` : ""}${parts[0] && parts[0].length === 2 ? ")" : ""}${parts[1] ? ` ${parts[1]}` : ""}${parts[2] ? `-${parts[2]}` : ""}${parts[3] ? `-${parts[3]}` : ""}`;
           });
         }
 
