@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Оформление заявки | Import Drive</title>
+    <title>Оформление заявки | Честный импорт</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
 
@@ -112,8 +112,8 @@
       }
 
       .layout {
-        display: grid;
-        grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+        width: min(760px, 100%);
+        margin: 0 auto;
         border: 1px solid var(--panel-border);
         border-radius: 24px;
         overflow: hidden;
@@ -123,90 +123,6 @@
         box-shadow:
           inset 0 1px 0 rgba(255, 255, 255, 0.04),
           0 28px 64px rgba(0, 0, 0, 0.28);
-      }
-
-      .intro {
-        position: relative;
-        padding: 44px clamp(24px, 3vw, 42px);
-        background:
-          radial-gradient(560px 260px at 16% 10%, rgba(41, 58, 79, 0.34), transparent 70%),
-          linear-gradient(180deg, rgba(10, 18, 28, 0.98), rgba(7, 14, 23, 0.96));
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .intro__eyebrow {
-        margin-bottom: 14px;
-        color: rgba(198, 208, 218, 0.58);
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .intro__title {
-        margin: 0 0 18px;
-        font-size: clamp(34px, 4vw, 52px);
-        font-weight: 700;
-        line-height: 1.02;
-        letter-spacing: -0.05em;
-      }
-
-      .intro__text {
-        margin: 0 0 28px;
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.6;
-      }
-
-      .intro__car {
-        padding: 18px 20px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .intro__car-label {
-        margin-bottom: 8px;
-        color: rgba(199, 208, 217, 0.58);
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .intro__car-value {
-        color: #f4f7fa;
-        font-size: 22px;
-        font-weight: 700;
-        line-height: 1.3;
-      }
-
-      .intro__list {
-        display: grid;
-        gap: 14px;
-        margin: 30px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .intro__list li {
-        position: relative;
-        padding-left: 20px;
-        color: rgba(223, 230, 236, 0.76);
-        font-size: 16px;
-        line-height: 1.5;
-      }
-
-      .intro__list li::before {
-        content: "";
-        position: absolute;
-        top: 9px;
-        left: 0;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 0 4px rgba(215, 52, 45, 0.14);
       }
 
       .form-wrap {
@@ -335,12 +251,7 @@
 
       @media (max-width: 960px) {
         .layout {
-          grid-template-columns: 1fr;
-        }
-
-        .intro {
-          border-right: 0;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          width: 100%;
         }
       }
 
@@ -355,13 +266,8 @@
           margin-bottom: 20px;
         }
 
-        .intro,
         .form-wrap {
           padding: 24px 18px;
-        }
-
-        .intro__title {
-          font-size: 34px;
         }
 
         .form-head__title {
@@ -373,7 +279,7 @@
   <body>
     <div class="page">
       <div class="topbar">
-        <a class="brand" href="./index.html" aria-label="Import Drive">
+        <a class="brand" href="./index.html" aria-label="Честный импорт">
           <svg class="brand__mark" viewBox="0 0 61 50" fill="none" aria-hidden="true">
             <path d="M3 46L15.5 4H31L18.5 46H3Z" fill="#F6F8FA"/>
             <path d="M19.3 46L31.8 4H45.8L33.3 46H19.3Z" fill="#F6F8FA"/>
@@ -382,7 +288,7 @@
             <path d="M17.4 39.5L26.1 10.4H31.5L22.8 39.5H17.4Z" fill="#08111A"/>
           </svg>
           <span class="brand__copy">
-            <span class="brand__title">IMPORT <span>DRIVE</span></span>
+            <span class="brand__title">ЧЕСТНЫЙ <span>ИМПОРТ</span></span>
             <span class="brand__subtitle">Автомобили из США и Японии</span>
           </span>
         </a>
@@ -396,25 +302,6 @@
       </div>
 
       <main class="layout">
-        <section class="intro" aria-labelledby="order-intro-title">
-          <div class="intro__eyebrow">Оформление заявки</div>
-          <h1 class="intro__title" id="order-intro-title">Оставьте заявку на подбор или покупку автомобиля</h1>
-          <p class="intro__text">
-            Мы свяжемся с вами, уточним детали, подготовим расчёт под ключ и предложим оптимальный вариант по срокам и бюджету.
-          </p>
-
-          <div class="intro__car">
-            <div class="intro__car-label">Выбранный автомобиль</div>
-            <div class="intro__car-value" data-selected-car>Не указан</div>
-          </div>
-
-          <ul class="intro__list">
-            <li>Проверяем историю, документы и состояние автомобиля до покупки.</li>
-            <li>Собираем полный расчёт: покупка, доставка, таможня и выдача.</li>
-            <li>Сопровождаем сделку от подбора до передачи машины владельцу.</li>
-          </ul>
-        </section>
-
         <section class="form-wrap" aria-labelledby="order-form-title">
           <div class="form-head">
             <h2 class="form-head__title" id="order-form-title">Данные для связи</h2>
@@ -435,7 +322,7 @@
 
             <label class="order-form__field">
               <span class="order-form__label">Телефон</span>
-              <input class="order-form__control" type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" />
+              <input class="order-form__control" type="tel" name="phone" placeholder="+375 (__) ___-__-__" autocomplete="tel" inputmode="tel" />
             </label>
 
             <label class="order-form__field">
@@ -471,7 +358,6 @@
         const form = document.querySelector("[data-order-page-form]");
         const counter = document.querySelector("[data-order-counter]");
         const successMessage = document.querySelector("[data-success-message]");
-        const selectedCar = document.querySelector("[data-selected-car]");
         const nameInput = form ? form.querySelector("input[name='name']") : null;
         const phoneInput = form ? form.querySelector("input[name='phone']") : null;
         const carInput = form ? form.querySelector("input[name='car']") : null;
@@ -496,13 +382,43 @@
           counter.textContent = `${messageInput.value.length}/500`;
         }
 
+        function formatBelarusPhone(value) {
+          const digits = value.replace(/\D/g, "").slice(0, 12);
+
+          let normalized = digits;
+
+          if (normalized.startsWith("80")) {
+            normalized = `375${normalized.slice(2)}`;
+          } else if (normalized.startsWith("8")) {
+            normalized = normalized.slice(1);
+          }
+
+          if (!normalized.startsWith("375")) {
+            normalized = `375${normalized.slice(0, 9)}`;
+          }
+
+          const local = normalized.slice(3, 12);
+          const parts = [
+            local.slice(0, 2),
+            local.slice(2, 5),
+            local.slice(5, 7),
+            local.slice(7, 9),
+          ].filter(Boolean);
+
+          if (!parts.length) {
+            return "";
+          }
+
+          return `+375${parts[0] ? ` (${parts[0]}` : ""}${parts[0] && parts[0].length === 2 ? ")" : ""}${parts[1] ? ` ${parts[1]}` : ""}${parts[2] ? `-${parts[2]}` : ""}${parts[3] ? `-${parts[3]}` : ""}`;
+        }
+
         applyParam(nameInput, "name");
         applyParam(phoneInput, "phone");
         applyParam(carInput, "car");
         applyParam(messageInput, "message");
 
-        if (selectedCar && carInput && carInput.value.trim()) {
-          selectedCar.textContent = carInput.value.trim();
+        if (phoneInput && phoneInput.value.trim()) {
+          phoneInput.value = formatBelarusPhone(phoneInput.value);
         }
 
         updateCounter();
@@ -513,22 +429,7 @@
 
         if (phoneInput) {
           phoneInput.addEventListener("input", () => {
-            const digits = phoneInput.value.replace(/\D/g, "").slice(0, 11);
-            const normalized = digits.startsWith("8") ? `7${digits.slice(1)}` : digits;
-            const local = normalized.startsWith("7") ? normalized.slice(1) : normalized;
-            const parts = [
-              local.slice(0, 3),
-              local.slice(3, 6),
-              local.slice(6, 8),
-              local.slice(8, 10),
-            ].filter(Boolean);
-
-            if (!parts.length) {
-              phoneInput.value = "";
-              return;
-            }
-
-            phoneInput.value = `+7 ${parts[0] ? `(${parts[0]}` : ""}${parts[0] && parts[0].length === 3 ? ")" : ""}${parts[1] ? ` ${parts[1]}` : ""}${parts[2] ? `-${parts[2]}` : ""}${parts[3] ? `-${parts[3]}` : ""}`;
+            phoneInput.value = formatBelarusPhone(phoneInput.value);
           });
         }
 
@@ -538,10 +439,6 @@
 
             if (successMessage) {
               successMessage.classList.add("is-visible");
-            }
-
-            if (selectedCar && carInput) {
-              selectedCar.textContent = carInput.value.trim() || "Не указан";
             }
 
             window.scrollTo({ top: 0, behavior: "smooth" });
