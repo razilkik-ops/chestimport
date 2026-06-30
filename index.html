@@ -984,31 +984,36 @@
       .reviews__card {
         position: relative;
         width: clamp(280px, 24vw, 360px);
-        min-height: 244px;
-        padding: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
-        background: rgba(9, 23, 35, 0.94);
+        min-height: 248px;
+        padding: 24px 24px 22px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 18px;
+        background: rgba(8, 16, 26, 0.94);
         box-shadow:
           inset 0 1px 0 rgba(255, 255, 255, 0.03),
-          0 18px 38px rgba(0, 0, 0, 0.12);
+          0 18px 34px rgba(0, 0, 0, 0.1);
       }
 
       .reviews__card::before {
         content: "";
         position: absolute;
         top: 0;
-        left: 24px;
-        right: 24px;
+        left: 18px;
+        right: 18px;
         height: 1px;
-        background: rgba(223, 74, 63, 0.34);
+        background: linear-gradient(
+          90deg,
+          rgba(223, 74, 63, 0.52) 0%,
+          rgba(223, 74, 63, 0.24) 50%,
+          rgba(223, 74, 63, 0.08) 100%
+        );
       }
 
       .reviews__head {
         display: flex;
         align-items: center;
         gap: 14px;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
 
       .reviews__avatar {
@@ -1059,7 +1064,7 @@
       .reviews__name {
         margin: 0 0 4px;
         color: #f3f6f9;
-        font-size: 19px;
+        font-size: 18px;
         font-weight: 700;
         line-height: 1.15;
         letter-spacing: -0.04em;
@@ -1076,8 +1081,8 @@
       .reviews__text {
         margin: 0;
         color: rgba(228, 234, 240, 0.82);
-        font-size: 16px;
-        line-height: 1.65;
+        font-size: 15px;
+        line-height: 1.6;
         letter-spacing: -0.02em;
       }
 
@@ -1440,8 +1445,8 @@
         z-index: 1;
         display: grid;
         grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
-        gap: 32px;
-        padding: 46px 34px 34px;
+        gap: 24px;
+        padding: 38px 28px 28px;
       }
 
       .contacts__copy {
@@ -1451,7 +1456,7 @@
       .contacts__eyebrow {
         margin: 0 0 22px;
         color: #f04d40;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 800;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -1461,16 +1466,16 @@
         margin: 0;
         max-width: 700px;
         color: #f7f9fb;
-        font-size: clamp(42px, 4.8vw, 76px);
+        font-size: clamp(34px, 3.8vw, 60px);
         font-weight: 700;
-        line-height: 0.95;
+        line-height: 0.98;
         letter-spacing: -0.07em;
       }
 
       .contacts__accent {
-        width: 78px;
+        width: 64px;
         height: 4px;
-        margin: 28px 0 24px;
+        margin: 22px 0 18px;
         border-radius: 999px;
         background: #ef4a3d;
       }
@@ -1479,36 +1484,36 @@
         margin: 0;
         max-width: 560px;
         color: rgba(213, 221, 229, 0.76);
-        font-size: 18px;
-        line-height: 1.5;
+        font-size: 16px;
+        line-height: 1.46;
       }
 
       .contacts__markets {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 28px;
+        gap: 8px;
+        margin-top: 22px;
       }
 
       .contacts__market {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        min-height: 54px;
-        padding: 0 16px 0 12px;
+        gap: 8px;
+        min-height: 46px;
+        padding: 0 14px 0 11px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 14px;
         background: rgba(12, 22, 34, 0.6);
         color: rgba(244, 247, 250, 0.9);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 800;
         letter-spacing: 0.02em;
         text-transform: uppercase;
       }
 
       .contacts__market img {
-        width: 34px;
-        height: 24px;
+        width: 30px;
+        height: 21px;
         border-radius: 6px;
         object-fit: cover;
         box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
@@ -1518,7 +1523,7 @@
       .contacts__map {
         position: relative;
         min-height: 268px;
-        margin-top: 38px;
+        margin-top: 30px;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
@@ -1585,18 +1590,18 @@
 
       .contacts__stack {
         display: grid;
-        gap: 14px;
+        gap: 12px;
         align-content: start;
       }
 
       .contacts__item {
         display: grid;
-        grid-template-columns: 88px minmax(0, 1fr);
+        grid-template-columns: 74px minmax(0, 1fr);
         align-items: center;
-        min-height: 98px;
-        padding: 0 28px 0 0;
+        min-height: 82px;
+        padding: 0 22px 0 0;
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 20px;
+        border-radius: 18px;
         background: rgba(13, 23, 35, 0.76);
         box-shadow:
           inset 0 1px 0 rgba(255, 255, 255, 0.03),
@@ -1619,9 +1624,9 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 58px;
-        height: 58px;
-        margin-left: 18px;
+        width: 48px;
+        height: 48px;
+        margin-left: 12px;
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 50%;
         background: rgba(8, 16, 26, 0.64);
@@ -1630,12 +1635,12 @@
       }
 
       .contacts__item-icon i {
-        font-size: 28px;
+        font-size: 23px;
       }
 
       .contacts__item-value {
         color: #f4f7fa;
-        font-size: 21px;
+        font-size: 18px;
         font-weight: 700;
         line-height: 1.22;
         letter-spacing: -0.03em;
@@ -1645,10 +1650,10 @@
         display: inline-flex;
         align-items: center;
         justify-content: space-between;
-        min-height: 92px;
-        padding: 0 28px;
+        min-height: 82px;
+        padding: 0 22px;
         border: 0;
-        border-radius: 20px;
+        border-radius: 18px;
         background: #df352d;
         color: #fff;
         cursor: pointer;
@@ -1672,15 +1677,15 @@
       .contacts__cta-copy {
         display: inline-flex;
         align-items: center;
-        gap: 18px;
+        gap: 14px;
       }
 
       .contacts__cta-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 58px;
-        height: 58px;
+        width: 48px;
+        height: 48px;
         border: 1px solid rgba(255, 255, 255, 0.16);
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.04);
@@ -1688,11 +1693,11 @@
 
       .contacts__cta-icon i,
       .contacts__cta-arrow i {
-        font-size: 28px;
+        font-size: 22px;
       }
 
       .contacts__cta-label {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 800;
         line-height: 1.2;
         letter-spacing: -0.02em;
@@ -3177,9 +3182,14 @@
         }
 
         .header__menu {
-          position: fixed;
-          inset: 0;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          height: calc(100dvh - var(--header-height));
+          min-height: calc(100vh - var(--header-height));
           display: block;
+          z-index: 1;
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.28s ease;
@@ -3194,6 +3204,7 @@
           display: block;
           position: absolute;
           inset: 0;
+          z-index: 0;
           background: rgba(3, 8, 14, 0.62);
           -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
@@ -3209,11 +3220,14 @@
           align-items: stretch;
           justify-content: flex-start;
           gap: 18px;
+          z-index: 1;
           width: min(360px, calc(100vw - 18px));
-          padding: 92px 18px 24px;
+          padding: 22px 18px 24px;
           background: rgba(7, 16, 27, 0.98);
           border-left: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow: -18px 0 44px rgba(0, 0, 0, 0.28);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
           transform: translateX(100%);
           transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -3428,6 +3442,7 @@
         .reviews__card {
           width: clamp(260px, 42vw, 320px);
           min-height: 228px;
+          padding: 22px 22px 20px;
         }
 
         .faq__grid,
@@ -3650,7 +3665,7 @@
 
         .header__menu-panel {
           width: min(320px, calc(100vw - 12px));
-          padding: 84px 16px 18px;
+          padding: 18px 16px 18px;
           gap: 14px;
         }
 
@@ -4077,7 +4092,7 @@
           width: min(84vw, 304px);
           min-height: 210px;
           flex: 0 0 min(84vw, 304px);
-          padding: 18px 16px 20px;
+          padding: 20px 18px 18px;
           border-radius: 18px;
           scroll-snap-align: start;
         }
@@ -4768,115 +4783,219 @@
       </div>
     </section>
 
-    <section class="advantages" id="services" aria-labelledby="advantages-title">
-      <div class="advantages__inner">
-        <div class="advantages__header">
-          <div class="advantages__eyebrow">Наши преимущества</div>
-          <h2 class="advantages__title" id="advantages-title">
-            Полный цикл услуг<br />по пригону автомобилей
-          </h2>
-        </div>
-
-        <div class="advantages__cards">
-            <article class="advantages__card">
-              <div class="advantages__icon" aria-hidden="true">
-                <img src="./assets/adv-icon-document.png" alt="" />
-              </div>
-              <h3 class="advantages__card-title">Прозрачные условия</h3>
-              <p class="advantages__card-text">
-                Фиксируем стоимость договора, без скрытых платежей.
-              </p>
-            </article>
-
-            <article class="advantages__card">
-              <div class="advantages__icon" aria-hidden="true">
-                <img src="./assets/adv-icon-car.png" alt="" />
-              </div>
-              <h3 class="advantages__card-title">Реальные авто</h3>
-              <p class="advantages__card-text">
-                Подбираем только лучшие варианты с проверенной историей.
-              </p>
-            </article>
-
-            <article class="advantages__card">
-              <div class="advantages__icon" aria-hidden="true">
-                <img src="./assets/adv-icon-report.png" alt="" />
-              </div>
-              <h3 class="advantages__card-title">Фиксируем всё</h3>
-              <p class="advantages__card-text">
-                Предоставляем полный отчёт и фото/видео на каждом этапе.
-              </p>
-            </article>
-
-            <article class="advantages__card">
-              <div class="advantages__icon" aria-hidden="true">
-                <img src="./assets/adv-icon-wallet.png" alt="" />
-              </div>
-              <h3 class="advantages__card-title">Подберём по бюджету</h3>
-              <p class="advantages__card-text">
-                Найдём оптимальный вариант под ваши пожелания.
-              </p>
-            </article>
-
-            <article class="advantages__card">
-              <div class="advantages__icon" aria-hidden="true">
-                <img src="./assets/adv-icon-gavel.png" alt="" />
-              </div>
-              <h3 class="advantages__card-title">Аукционы США и Японии</h3>
-              <p class="advantages__card-text">
-                Доступ к закрытым торгам Copart, IAAI, USS, TAA и другим.
-              </p>
-            </article>
-
-            <article class="advantages__card">
-              <div class="advantages__icon" aria-hidden="true">
-                <img src="./assets/adv-icon-shield.png" alt="" />
-              </div>
-              <h3 class="advantages__card-title">Гарантия прозрачности</h3>
-              <p class="advantages__card-text">
-                Сопровождаем сделку и полностью поддерживаем до выдачи авто.
-              </p>
-            </article>
-        </div>
-
-        <div class="advantages__logistics">
-          <div class="advantages__logistics-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none">
-              <path
-                d="M7 12.5h22.5c1.1 0 2 .9 2 2V29h4.6c.7 0 1.35.32 1.78.88L42 35.2V38c0 1.1-.9 2-2 2h-1.9a5.6 5.6 0 0 1-10.7 0H19.6a5.6 5.6 0 0 1-10.7 0H7c-1.1 0-2-.9-2-2V14.5c0-1.1.9-2 2-2Z"
-                stroke="currentColor"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M31.5 18.5H37l4 5.1h-9.5v-5.1Z"
-                stroke="currentColor"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle cx="14.2" cy="38.2" r="3.2" stroke="currentColor" stroke-width="2.4" />
-              <circle cx="32.8" cy="38.2" r="3.2" stroke="currentColor" stroke-width="2.4" />
-            </svg>
+    <section class="process" id="services" aria-labelledby="process-title">
+      <div class="section-anchor" id="about" aria-hidden="true"></div>
+      <div class="process__inner">
+        <div class="process__board">
+          <div class="process__header">
+            <div class="process__eyebrow">Как мы работаем</div>
+            <h2 class="process__title" id="process-title">Маршрут сделки<br />от заявки до ключей</h2>
+            <p class="process__summary">
+              Собрали процесс в понятную инструкцию по шагам: вы сразу видите последовательность работы,
+              какие действия и документы идут на каждом этапе и что будет дальше.
+            </p>
           </div>
 
-          <div class="advantages__logistics-copy">
-            <h3 class="advantages__logistics-title">
-              Доставка из Европы, США и Кореи
-            </h3>
-            <p class="advantages__logistics-text">
-              Организуем доставку обычных автомобилей и негабаритной техники под ключ:
-              подбираем маршрут, контролируем погрузку, сопровождаем логистику и
-              готовим документы для ввоза и дальнейшего оформления.
-            </p>
-            <div class="advantages__logistics-tags" aria-label="Направления и типы доставки">
-              <span class="advantages__logistics-tag">Европа</span>
-              <span class="advantages__logistics-tag">США</span>
-              <span class="advantages__logistics-tag">Корея</span>
-              <span class="advantages__logistics-tag">Обычные авто</span>
-              <span class="advantages__logistics-tag">Негабарит</span>
-            </div>
+          <div class="process__steps" data-process-list>
+            <article class="process__item is-open">
+              <button class="process__trigger" type="button" aria-expanded="true">
+                <span class="process__index">01</span>
+                <span class="process__copy">
+                  <span class="process__name">Консультация</span>
+                  <span class="process__label">Уточняем запрос и сразу подбираем лучшие варианты</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-messages"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Мы связываемся, уточняем ваш запрос и сразу подбираем лучшие варианты авто.</p>
+                    <ul class="process__points">
+                      <li>Уточняем марку, модель, бюджет, сроки и ключевые пожелания.</li>
+                      <li>Сразу формируем первичный список подходящих вариантов.</li>
+                      <li>Обозначаем понятный маршрут сделки и следующие шаги.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="process__item">
+              <button class="process__trigger" type="button" aria-expanded="false">
+                <span class="process__index">02</span>
+                <span class="process__copy">
+                  <span class="process__name">Договор</span>
+                  <span class="process__label">Подписываем договор онлайн или в офисе</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-file-description"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Подписываем договор онлайн или в офисе.</p>
+                    <ul class="process__points">
+                      <li>Фиксируем условия сотрудничества и порядок сопровождения.</li>
+                      <li>Согласовываем формат коммуникации и дальнейшие этапы.</li>
+                      <li>Закрепляем все базовые договорённости до старта работы.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="process__item">
+              <button class="process__trigger" type="button" aria-expanded="false">
+                <span class="process__index">03</span>
+                <span class="process__copy">
+                  <span class="process__name">Подбор</span>
+                  <span class="process__label">Подбираем варианты под ваши критерии</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-search"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Подбираем варианты под ваши критерии: по марке, модели, состоянию, цене и срокам.</p>
+                    <ul class="process__points">
+                      <li>Отсеиваем слабые предложения и оставляем только рабочие варианты.</li>
+                      <li>Сравниваем предложения по состоянию, комплектации и цене.</li>
+                      <li>Двигаемся только по тем авто, которые реально подходят под задачу.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="process__item">
+              <button class="process__trigger" type="button" aria-expanded="false">
+                <span class="process__index">04</span>
+                <span class="process__copy">
+                  <span class="process__name">Расчёт</span>
+                  <span class="process__label">Формируем детальный расчёт под ключ</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-calculator"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Формируем детальный расчёт «под ключ» — с учётом цены авто, доставки, таможенных платежей и комиссий.</p>
+                    <ul class="process__points">
+                      <li>Показываем полную смету без скрытых доплат и сюрпризов.</li>
+                      <li>Разбиваем стоимость по понятным статьям расходов.</li>
+                      <li>Сверяем итог с вашим бюджетом до следующего шага.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="process__item">
+              <button class="process__trigger" type="button" aria-expanded="false">
+                <span class="process__index">05</span>
+                <span class="process__copy">
+                  <span class="process__name">Проверка</span>
+                  <span class="process__label">Проверяем историю и техническое состояние</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-shield-search"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Проверяем историю эксплуатации, пробег, комплектацию и техническое состояние — по платным базам с отчётами. В Корее проводятся компьютерная диагностика и осмотр специалистом.</p>
+                    <ul class="process__points">
+                      <li>Изучаем отчёты, историю эксплуатации и подтверждённый пробег.</li>
+                      <li>Проверяем комплектацию, состояние и возможные риски заранее.</li>
+                      <li>По Корее добавляем диагностику и осмотр специалистом.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="process__item">
+              <button class="process__trigger" type="button" aria-expanded="false">
+                <span class="process__index">06</span>
+                <span class="process__copy">
+                  <span class="process__name">Оплата</span>
+                  <span class="process__label">Оплата по выставленному счёту-инвойсу</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-credit-card-pay"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Производится в банке по выставленному счёту-инвойсу. Расскажем, где выгоднее проводить оплату в каждом случае и в какие сроки.</p>
+                    <ul class="process__points">
+                      <li>Подсказываем оптимальный способ оплаты под конкретную сделку.</li>
+                      <li>Объясняем сроки перевода и последовательность расчётов.</li>
+                      <li>Сопровождаем этап до подтверждения платежа у принимающей стороны.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="process__item">
+              <button class="process__trigger" type="button" aria-expanded="false">
+                <span class="process__index">07</span>
+                <span class="process__copy">
+                  <span class="process__name">Доставка</span>
+                  <span class="process__label">Фото- и видеофиксация по всему маршруту</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-ship"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Во время доставки авто производится фото- и видеофиксация: от нахождения на складе до перегрузок и прибытия.</p>
+                    <ul class="process__points">
+                      <li>Контролируем путь автомобиля от склада до прибытия.</li>
+                      <li>Фиксируем этапы доставки, перегрузок и движения по маршруту.</li>
+                      <li>Даём понятный статус и подтверждения на каждом шаге логистики.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="process__item">
+              <button class="process__trigger" type="button" aria-expanded="false">
+                <span class="process__index">08</span>
+                <span class="process__copy">
+                  <span class="process__name">Растаможка</span>
+                  <span class="process__label">Помогаем с оформлением и процессом на СВХ</span>
+                </span>
+                <span class="process__icon" aria-hidden="true"><i class="ti ti-building-warehouse"></i></span>
+                <span class="process__toggle" aria-hidden="true"></span>
+              </button>
+              <div class="process__details">
+                <div class="process__details-inner">
+                  <div class="process__details-wrap">
+                    <span class="process__accent" aria-hidden="true"></span>
+                    <p class="process__desc">Авто доставляется на СВХ «Колядичи-Авто». Помогаем с оформлением документов, консультируем по растаможке, при необходимости сопровождаем процесс.</p>
+                    <ul class="process__points">
+                      <li>Готовим документы для оформления и объясняем порядок действий.</li>
+                      <li>Консультируем по растаможке и финальным обязательным платежам.</li>
+                      <li>При необходимости сопровождаем процесс до выдачи автомобиля.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -5191,222 +5310,6 @@
       </div>
     </div>
 
-    <section class="process" id="about" aria-labelledby="process-title">
-      <div class="process__inner">
-        <div class="process__board">
-          <div class="process__header">
-            <div class="process__eyebrow">Как мы работаем</div>
-            <h2 class="process__title" id="process-title">Маршрут сделки<br />от заявки до ключей</h2>
-            <p class="process__summary">
-              Собрали процесс в понятную инструкцию по шагам: вы сразу видите последовательность работы,
-              какие действия и документы идут на каждом этапе и что будет дальше.
-            </p>
-          </div>
-
-          <div class="process__steps" data-process-list>
-            <article class="process__item is-open">
-              <button class="process__trigger" type="button" aria-expanded="true">
-                <span class="process__index">01</span>
-                <span class="process__copy">
-                  <span class="process__name">Консультация</span>
-                  <span class="process__label">Уточняем запрос и сразу подбираем лучшие варианты</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-messages"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Мы связываемся, уточняем ваш запрос и сразу подбираем лучшие варианты авто.</p>
-                    <ul class="process__points">
-                      <li>Уточняем марку, модель, бюджет, сроки и ключевые пожелания.</li>
-                      <li>Сразу формируем первичный список подходящих вариантов.</li>
-                      <li>Обозначаем понятный маршрут сделки и следующие шаги.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="process__item">
-              <button class="process__trigger" type="button" aria-expanded="false">
-                <span class="process__index">02</span>
-                <span class="process__copy">
-                  <span class="process__name">Договор</span>
-                  <span class="process__label">Подписываем договор онлайн или в офисе</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-file-description"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Подписываем договор онлайн или в офисе.</p>
-                    <ul class="process__points">
-                      <li>Фиксируем условия сотрудничества и порядок сопровождения.</li>
-                      <li>Согласовываем формат коммуникации и дальнейшие этапы.</li>
-                      <li>Закрепляем все базовые договорённости до старта работы.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="process__item">
-              <button class="process__trigger" type="button" aria-expanded="false">
-                <span class="process__index">03</span>
-                <span class="process__copy">
-                  <span class="process__name">Подбор</span>
-                  <span class="process__label">Подбираем варианты под ваши критерии</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-search"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Подбираем варианты под ваши критерии: по марке, модели, состоянию, цене и срокам.</p>
-                    <ul class="process__points">
-                      <li>Отсеиваем слабые предложения и оставляем только рабочие варианты.</li>
-                      <li>Сравниваем предложения по состоянию, комплектации и цене.</li>
-                      <li>Двигаемся только по тем авто, которые реально подходят под задачу.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="process__item">
-              <button class="process__trigger" type="button" aria-expanded="false">
-                <span class="process__index">04</span>
-                <span class="process__copy">
-                  <span class="process__name">Расчёт</span>
-                  <span class="process__label">Формируем детальный расчёт под ключ</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-calculator"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Формируем детальный расчёт «под ключ» — с учётом цены авто, доставки, таможенных платежей и комиссий.</p>
-                    <ul class="process__points">
-                      <li>Показываем полную смету без скрытых доплат и сюрпризов.</li>
-                      <li>Разбиваем стоимость по понятным статьям расходов.</li>
-                      <li>Сверяем итог с вашим бюджетом до следующего шага.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="process__item">
-              <button class="process__trigger" type="button" aria-expanded="false">
-                <span class="process__index">05</span>
-                <span class="process__copy">
-                  <span class="process__name">Проверка</span>
-                  <span class="process__label">Проверяем историю и техническое состояние</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-shield-search"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Проверяем историю эксплуатации, пробег, комплектацию и техническое состояние — по платным базам с отчётами. В Корее проводятся компьютерная диагностика и осмотр специалистом.</p>
-                    <ul class="process__points">
-                      <li>Изучаем отчёты, историю эксплуатации и подтверждённый пробег.</li>
-                      <li>Проверяем комплектацию, состояние и возможные риски заранее.</li>
-                      <li>По Корее добавляем диагностику и осмотр специалистом.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="process__item">
-              <button class="process__trigger" type="button" aria-expanded="false">
-                <span class="process__index">06</span>
-                <span class="process__copy">
-                  <span class="process__name">Оплата</span>
-                  <span class="process__label">Оплата по выставленному счёту-инвойсу</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-credit-card-pay"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Производится в банке по выставленному счёту-инвойсу. Расскажем, где выгоднее проводить оплату в каждом случае и в какие сроки.</p>
-                    <ul class="process__points">
-                      <li>Подсказываем оптимальный способ оплаты под конкретную сделку.</li>
-                      <li>Объясняем сроки перевода и последовательность расчётов.</li>
-                      <li>Сопровождаем этап до подтверждения платежа у принимающей стороны.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="process__item">
-              <button class="process__trigger" type="button" aria-expanded="false">
-                <span class="process__index">07</span>
-                <span class="process__copy">
-                  <span class="process__name">Доставка</span>
-                  <span class="process__label">Фото- и видеофиксация по всему маршруту</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-ship"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Во время доставки авто производится фото- и видеофиксация: от нахождения на складе до перегрузок и прибытия.</p>
-                    <ul class="process__points">
-                      <li>Контролируем путь автомобиля от склада до прибытия.</li>
-                      <li>Фиксируем этапы доставки, перегрузок и движения по маршруту.</li>
-                      <li>Даём понятный статус и подтверждения на каждом шаге логистики.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="process__item">
-              <button class="process__trigger" type="button" aria-expanded="false">
-                <span class="process__index">08</span>
-                <span class="process__copy">
-                  <span class="process__name">Растаможка</span>
-                  <span class="process__label">Помогаем с оформлением и процессом на СВХ</span>
-                </span>
-                <span class="process__icon" aria-hidden="true"><i class="ti ti-building-warehouse"></i></span>
-                <span class="process__toggle" aria-hidden="true"></span>
-              </button>
-              <div class="process__details">
-                <div class="process__details-inner">
-                  <div class="process__details-wrap">
-                    <span class="process__accent" aria-hidden="true"></span>
-                    <p class="process__desc">Авто доставляется на СВХ «Колядичи-Авто». Помогаем с оформлением документов, консультируем по растаможке, при необходимости сопровождаем процесс.</p>
-                    <ul class="process__points">
-                      <li>Готовим документы для оформления и объясняем порядок действий.</li>
-                      <li>Консультируем по растаможке и финальным обязательным платежам.</li>
-                      <li>При необходимости сопровождаем процесс до выдачи автомобиля.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="reviews" id="reviews" aria-labelledby="reviews-title">
       <div class="reviews__inner">
