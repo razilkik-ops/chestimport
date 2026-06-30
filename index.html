@@ -12,6 +12,8 @@
         --bg-top: #050b13;
         --bg-bottom: #08111a;
         --header-height: 90px;
+        --safe-top: env(safe-area-inset-top, 0px);
+        --header-offset: calc(var(--header-height) + var(--safe-top));
         --line-soft: rgba(255, 255, 255, 0.04);
         --text: rgba(255, 255, 255, 0.94);
         --muted: rgba(225, 232, 239, 0.72);
@@ -37,7 +39,7 @@
         color: var(--text);
         font-family: Arial, Helvetica, sans-serif;
         overflow-x: hidden;
-        padding-top: var(--header-height);
+        padding-top: var(--header-offset);
       }
 
       body.is-modal-open,
@@ -51,7 +53,8 @@
         left: 0;
         z-index: 40;
         width: 100%;
-        height: var(--header-height);
+        height: var(--header-offset);
+        padding-top: var(--safe-top);
         background: rgba(8, 17, 26, 0.9);
         -webkit-backdrop-filter: blur(14px);
         backdrop-filter: blur(14px);
@@ -64,7 +67,7 @@
       #about,
       #reviews,
       #contacts {
-        scroll-margin-top: calc(var(--header-height) + 18px);
+        scroll-margin-top: calc(var(--header-offset) + 18px);
       }
 
       .header__inner {
@@ -3180,8 +3183,8 @@
           top: 100%;
           left: 0;
           right: 0;
-          height: calc(100dvh - var(--header-height));
-          min-height: calc(100vh - var(--header-height));
+          height: calc(100dvh - var(--header-offset));
+          min-height: calc(100vh - var(--header-offset));
           display: block;
           z-index: 1;
           pointer-events: none;
@@ -5323,7 +5326,7 @@
                   <div class="reviews__avatar reviews__avatar--1" aria-hidden="true">АМ</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Алексей М.</h3>
-                    <p class="reviews__role">Москва</p>
+                    <p class="reviews__role">Брест</p>
                   </div>
                 </div>
                 <p class="reviews__text">Привезли Mustang из США без сюрпризов по бюджету. Всю дорогу были на связи, поэтому вообще не приходилось переживать за этапы сделки.</p>
@@ -5334,7 +5337,7 @@
                   <div class="reviews__avatar reviews__avatar--2" aria-hidden="true">ИК</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Игорь К.</h3>
-                    <p class="reviews__role">Краснодар</p>
+                    <p class="reviews__role">Гомель</p>
                   </div>
                 </div>
                 <p class="reviews__text">Toyota Supra приехала именно в том состоянии, как и обещали. Отдельно понравилось, что по документам и логистике всё объясняли простым человеческим языком.</p>
@@ -5345,7 +5348,7 @@
                   <div class="reviews__avatar reviews__avatar--3" aria-hidden="true">МЕ</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Мария Е.</h3>
-                    <p class="reviews__role">Екатеринбург</p>
+                    <p class="reviews__role">Гродно</p>
                   </div>
                 </div>
                 <p class="reviews__text">Для меня было важно, чтобы процесс был спокойным и прозрачным. Так и получилось: без лишней суеты, с понятными сроками и постоянной обратной связью.</p>
@@ -5356,7 +5359,7 @@
                   <div class="reviews__avatar reviews__avatar--4" aria-hidden="true">ДС</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Дмитрий С.</h3>
-                    <p class="reviews__role">Казань</p>
+                    <p class="reviews__role">Витебск</p>
                   </div>
                 </div>
                 <p class="reviews__text">Подобрали несколько сильных вариантов под бюджет и быстро вывели на покупку. Ничего не навязывали, а реально помогали принять правильное решение.</p>
@@ -5367,7 +5370,7 @@
                   <div class="reviews__avatar reviews__avatar--5" aria-hidden="true">ОВ</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Ольга В.</h3>
-                    <p class="reviews__role">Санкт-Петербург</p>
+                    <p class="reviews__role">Могилёв</p>
                   </div>
                 </div>
                 <p class="reviews__text">Очень понравилось сопровождение после покупки. Не пропали после выдачи, а помогли с вопросами по документам и дальнейшей эксплуатации автомобиля.</p>
@@ -5391,7 +5394,7 @@
                   <div class="reviews__avatar reviews__avatar--1" aria-hidden="true">АМ</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Алексей М.</h3>
-                    <p class="reviews__role">Москва</p>
+                    <p class="reviews__role">Брест</p>
                   </div>
                 </div>
                 <p class="reviews__text">Привезли Mustang из США без сюрпризов по бюджету. Всю дорогу были на связи, поэтому вообще не приходилось переживать за этапы сделки.</p>
@@ -5402,7 +5405,7 @@
                   <div class="reviews__avatar reviews__avatar--2" aria-hidden="true">ИК</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Игорь К.</h3>
-                    <p class="reviews__role">Краснодар</p>
+                    <p class="reviews__role">Гомель</p>
                   </div>
                 </div>
                 <p class="reviews__text">Toyota Supra приехала именно в том состоянии, как и обещали. Отдельно понравилось, что по документам и логистике всё объясняли простым человеческим языком.</p>
@@ -5413,7 +5416,7 @@
                   <div class="reviews__avatar reviews__avatar--3" aria-hidden="true">МЕ</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Мария Е.</h3>
-                    <p class="reviews__role">Екатеринбург</p>
+                    <p class="reviews__role">Гродно</p>
                   </div>
                 </div>
                 <p class="reviews__text">Для меня было важно, чтобы процесс был спокойным и прозрачным. Так и получилось: без лишней суеты, с понятными сроками и постоянной обратной связью.</p>
@@ -5424,7 +5427,7 @@
                   <div class="reviews__avatar reviews__avatar--4" aria-hidden="true">ДС</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Дмитрий С.</h3>
-                    <p class="reviews__role">Казань</p>
+                    <p class="reviews__role">Витебск</p>
                   </div>
                 </div>
                 <p class="reviews__text">Подобрали несколько сильных вариантов под бюджет и быстро вывели на покупку. Ничего не навязывали, а реально помогали принять правильное решение.</p>
@@ -5435,7 +5438,7 @@
                   <div class="reviews__avatar reviews__avatar--5" aria-hidden="true">ОВ</div>
                   <div class="reviews__person">
                     <h3 class="reviews__name">Ольга В.</h3>
-                    <p class="reviews__role">Санкт-Петербург</p>
+                    <p class="reviews__role">Могилёв</p>
                   </div>
                 </div>
                 <p class="reviews__text">Очень понравилось сопровождение после покупки. Не пропали после выдачи, а помогли с вопросами по документам и дальнейшей эксплуатации автомобиля.</p>
@@ -5477,8 +5480,8 @@
             <div class="faq__answer">
               <div class="faq__answer-inner">
                 <p class="faq__answer-copy">
-                  В среднем доставка занимает от 3 до 6 недель в зависимости от страны,
-                  аукциона и типа автомобиля. Из США обычно 3-5 недель, из Японии 2-4 недели.
+                  В среднем доставка занимает от 6 до 13 недель в зависимости от страны,
+                  маршрута, аукциона и типа автомобиля.
                 </p>
               </div>
             </div>
@@ -5726,7 +5729,7 @@
               <div class="contacts__map">
                 <iframe
                   class="contacts__map-frame"
-                  src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D0%BF%D1%80-%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%2C%2063&z=16"
+                  src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B5%D0%BB%D0%B5%D0%B6%D0%B0%2C%20%D0%B4.%203%2C%20%D0%BE%D1%84.%20603&z=16"
                   title="Яндекс Карта офиса Честный пригон"
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
@@ -5736,22 +5739,17 @@
                     <i class="ti ti-map-pin"></i>
                   </div>
                   <div>
-                    <h3 class="contacts__map-title">Мы находимся в центре Минска</h3>
-                    <p class="contacts__map-text">Удобный подъезд и парковка для наших клиентов</p>
+                    <h3 class="contacts__map-title">Офис компании в Минске</h3>
+                    <p class="contacts__map-text">г. Минск, ул. Мележа, д. 3, оф. 603</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="contacts__stack">
-              <a class="contacts__item" href="tel:+375296124567">
+              <a class="contacts__item" href="tel:+375447543987">
                 <span class="contacts__item-icon" aria-hidden="true"><i class="ti ti-phone"></i></span>
-                <span class="contacts__item-value">+375 (29) 612-45-67</span>
-              </a>
-
-              <a class="contacts__item" href="tel:+375336842010">
-                <span class="contacts__item-icon" aria-hidden="true"><i class="ti ti-phone"></i></span>
-                <span class="contacts__item-value">+375 (33) 684-20-10</span>
+                <span class="contacts__item-value">+375 (44) 754-39-87</span>
               </a>
 
               <a class="contacts__item" href="mailto:hello@prigondrive.by">
@@ -5759,9 +5757,9 @@
                 <span class="contacts__item-value">hello@prigondrive.by</span>
               </a>
 
-              <a class="contacts__item" href="https://maps.google.com/?q=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D0%BF%D1%80-%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%2C%2063" target="_blank" rel="noreferrer">
+              <a class="contacts__item" href="https://maps.google.com/?q=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B5%D0%BB%D0%B5%D0%B6%D0%B0%2C%20%D0%B4.%203%2C%20%D0%BE%D1%84.%20603" target="_blank" rel="noreferrer">
                 <span class="contacts__item-icon" aria-hidden="true"><i class="ti ti-map-pin"></i></span>
-                <span class="contacts__item-value">г. Минск, пр-т Победителей, 63</span>
+                <span class="contacts__item-value">г. Минск, ул. Мележа, д. 3, оф. 603</span>
               </a>
 
               <div class="contacts__item">
@@ -5886,14 +5884,7 @@
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M7.4 4.8H10.3L11.8 8.6L10 10.2C11 12.2 12.8 14 14.8 15L16.4 13.2L20.2 14.7V17.6C20.2 18.7 19.3 19.6 18.2 19.6H17.1C9.9 19.2 4.8 14.1 4.4 6.9V5.8C4.4 4.7 5.3 3.8 6.4 3.8H7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span>+375 (29) 612-45-67</span>
-              </div>
-
-              <div class="site-footer__contact">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M7.4 4.8H10.3L11.8 8.6L10 10.2C11 12.2 12.8 14 14.8 15L16.4 13.2L20.2 14.7V17.6C20.2 18.7 19.3 19.6 18.2 19.6H17.1C9.9 19.2 4.8 14.1 4.4 6.9V5.8C4.4 4.7 5.3 3.8 6.4 3.8H7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>+375 (33) 684-20-10</span>
+                <span>+375 (44) 754-39-87</span>
               </div>
 
               <div class="site-footer__contact">
@@ -5909,7 +5900,7 @@
                   <path d="M12 20C15.6 16.4 18.5 13.3 18.5 9.7C18.5 6.2 15.6 3.5 12 3.5C8.4 3.5 5.5 6.2 5.5 9.7C5.5 13.3 8.4 16.4 12 20Z" stroke="currentColor" stroke-width="1.8"/>
                   <circle cx="12" cy="9.7" r="2.4" stroke="currentColor" stroke-width="1.8"/>
                 </svg>
-                <span>г. Минск, пр-т Победителей, 63</span>
+                <span>г. Минск, ул. Мележа, д. 3, оф. 603</span>
               </div>
             </div>
           </div>
